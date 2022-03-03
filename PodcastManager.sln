@@ -1,0 +1,139 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.AllServices", "PodcastManager.AllServices\PodcastManager.AllServices.csproj", "{90E77126-B849-4D34-8DCE-7CA03133CFF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ItunesCrawler", "ItunesCrawler", "{DCA36531-223D-4A45-8657-40BEB86BF981}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler", "ItunesCrawler\PodcastManager.ItunesCrawler\PodcastManager.ItunesCrawler.csproj", "{65A81550-759F-47A0-9A64-1EF6B0F56571}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{05659431-67AC-4ED1-A102-AEB78596C2A6}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.Tests", "ItunesCrawler\PodcastManager.ItunesCrawler.Tests\PodcastManager.ItunesCrawler.Tests.csproj", "{AE8803A0-3AB4-4983-98C7-47F26DFB3D25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.Core", "ItunesCrawler\PodcastManager.ItunesCrawler.Core\PodcastManager.ItunesCrawler.Core.csproj", "{E87FB2EE-CF84-4225-BCDF-0FF75BC4D93D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.Application", "ItunesCrawler\PodcastManager.ItunesCrawler.Application\PodcastManager.ItunesCrawler.Application.csproj", "{AF7397DD-0E76-478A-8CEA-988D2C328458}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.Domain", "ItunesCrawler\PodcastManager.ItunesCrawler.Domain\PodcastManager.ItunesCrawler.Domain.csproj", "{E0CE9C7F-32E8-4FAE-96F6-2303B1269244}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.CrossCutting.IoC", "ItunesCrawler\PodcastManager.ItunesCrawler.CrossCutting.IoC\PodcastManager.ItunesCrawler.CrossCutting.IoC.csproj", "{22B49F74-FFA0-4D2C-ACCF-A37C9D12CCAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.CrossCutting.Mongo", "ItunesCrawler\PodcastManager.ItunesCrawler.CrossCutting.Mongo\PodcastManager.ItunesCrawler.CrossCutting.Mongo.csproj", "{601972F4-6599-4C77-8590-32A73B6BE907}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.CrossCutting.Logging", "ItunesCrawler\PodcastManager.ItunesCrawler.CrossCutting.Logging\PodcastManager.ItunesCrawler.CrossCutting.Logging.csproj", "{542B55B1-05F1-453B-AB05-6423C58C9D86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FeedUpdater", "FeedUpdater", "{7F38B114-446C-4A38-A25A-F5FA0B4610F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.FeedUpdater", "FeedUpdater\PodcastManager.FeedUpdater\PodcastManager.FeedUpdater.csproj", "{649FAE66-FFBC-4582-AE5B-7202CA782EBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.FeedUpdater.Tests", "FeedUpdater\PodcastManager.FeedUpdater.Tests\PodcastManager.FeedUpdater.Tests.csproj", "{03E6B8F3-3750-475A-BD5B-259E19F35981}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.FeedUpdater.Application", "FeedUpdater\PodcastManager.FeedUpdater.Application\PodcastManager.FeedUpdater.Application.csproj", "{216977AC-B3DC-4D49-8FD7-A0BE3E6A87AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.FeedUpdater.Core", "FeedUpdater\PodcastManager.FeedUpdater.Core\PodcastManager.FeedUpdater.Core.csproj", "{6EC74D92-5F27-4F3A-A766-289B11CF60B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.FeedUpdater.Domain", "FeedUpdater\PodcastManager.FeedUpdater.Domain\PodcastManager.FeedUpdater.Domain.csproj", "{D23BE81E-0E0C-4E7B-A091-5C590E2DE2EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.FeedUpdater.CrossCutting.IoC", "FeedUpdater\PodcastManager.FeedUpdater.CrossCutting.IoC\PodcastManager.FeedUpdater.CrossCutting.IoC.csproj", "{2CF58D76-EDDA-4F9A-84ED-5A3EE1BA9C27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.FeedUpdater.CrossCutting.Logging", "FeedUpdater\PodcastManager.FeedUpdater.CrossCutting.Logging\PodcastManager.FeedUpdater.CrossCutting.Logging.csproj", "{97698FFC-C784-48ED-86D3-DF39D6789A11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.FeedUpdater.CrossCutting.Mongo", "FeedUpdater\PodcastManager.FeedUpdater.CrossCutting.Mongo\PodcastManager.FeedUpdater.CrossCutting.Mongo.csproj", "{78B193C2-48D0-41AE-9E39-46FA059AAF82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90E77126-B849-4D34-8DCE-7CA03133CFF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90E77126-B849-4D34-8DCE-7CA03133CFF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90E77126-B849-4D34-8DCE-7CA03133CFF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90E77126-B849-4D34-8DCE-7CA03133CFF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65A81550-759F-47A0-9A64-1EF6B0F56571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65A81550-759F-47A0-9A64-1EF6B0F56571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65A81550-759F-47A0-9A64-1EF6B0F56571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65A81550-759F-47A0-9A64-1EF6B0F56571}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE8803A0-3AB4-4983-98C7-47F26DFB3D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE8803A0-3AB4-4983-98C7-47F26DFB3D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE8803A0-3AB4-4983-98C7-47F26DFB3D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE8803A0-3AB4-4983-98C7-47F26DFB3D25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E87FB2EE-CF84-4225-BCDF-0FF75BC4D93D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E87FB2EE-CF84-4225-BCDF-0FF75BC4D93D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E87FB2EE-CF84-4225-BCDF-0FF75BC4D93D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E87FB2EE-CF84-4225-BCDF-0FF75BC4D93D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF7397DD-0E76-478A-8CEA-988D2C328458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF7397DD-0E76-478A-8CEA-988D2C328458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF7397DD-0E76-478A-8CEA-988D2C328458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF7397DD-0E76-478A-8CEA-988D2C328458}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0CE9C7F-32E8-4FAE-96F6-2303B1269244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0CE9C7F-32E8-4FAE-96F6-2303B1269244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0CE9C7F-32E8-4FAE-96F6-2303B1269244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0CE9C7F-32E8-4FAE-96F6-2303B1269244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22B49F74-FFA0-4D2C-ACCF-A37C9D12CCAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22B49F74-FFA0-4D2C-ACCF-A37C9D12CCAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22B49F74-FFA0-4D2C-ACCF-A37C9D12CCAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22B49F74-FFA0-4D2C-ACCF-A37C9D12CCAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{601972F4-6599-4C77-8590-32A73B6BE907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{601972F4-6599-4C77-8590-32A73B6BE907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{601972F4-6599-4C77-8590-32A73B6BE907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{601972F4-6599-4C77-8590-32A73B6BE907}.Release|Any CPU.Build.0 = Release|Any CPU
+		{542B55B1-05F1-453B-AB05-6423C58C9D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{542B55B1-05F1-453B-AB05-6423C58C9D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{542B55B1-05F1-453B-AB05-6423C58C9D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{542B55B1-05F1-453B-AB05-6423C58C9D86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{649FAE66-FFBC-4582-AE5B-7202CA782EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{649FAE66-FFBC-4582-AE5B-7202CA782EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{649FAE66-FFBC-4582-AE5B-7202CA782EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{649FAE66-FFBC-4582-AE5B-7202CA782EBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03E6B8F3-3750-475A-BD5B-259E19F35981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E6B8F3-3750-475A-BD5B-259E19F35981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E6B8F3-3750-475A-BD5B-259E19F35981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E6B8F3-3750-475A-BD5B-259E19F35981}.Release|Any CPU.Build.0 = Release|Any CPU
+		{216977AC-B3DC-4D49-8FD7-A0BE3E6A87AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{216977AC-B3DC-4D49-8FD7-A0BE3E6A87AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{216977AC-B3DC-4D49-8FD7-A0BE3E6A87AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{216977AC-B3DC-4D49-8FD7-A0BE3E6A87AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC74D92-5F27-4F3A-A766-289B11CF60B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC74D92-5F27-4F3A-A766-289B11CF60B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC74D92-5F27-4F3A-A766-289B11CF60B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC74D92-5F27-4F3A-A766-289B11CF60B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D23BE81E-0E0C-4E7B-A091-5C590E2DE2EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23BE81E-0E0C-4E7B-A091-5C590E2DE2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23BE81E-0E0C-4E7B-A091-5C590E2DE2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23BE81E-0E0C-4E7B-A091-5C590E2DE2EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CF58D76-EDDA-4F9A-84ED-5A3EE1BA9C27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF58D76-EDDA-4F9A-84ED-5A3EE1BA9C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CF58D76-EDDA-4F9A-84ED-5A3EE1BA9C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CF58D76-EDDA-4F9A-84ED-5A3EE1BA9C27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97698FFC-C784-48ED-86D3-DF39D6789A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97698FFC-C784-48ED-86D3-DF39D6789A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97698FFC-C784-48ED-86D3-DF39D6789A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97698FFC-C784-48ED-86D3-DF39D6789A11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B193C2-48D0-41AE-9E39-46FA059AAF82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B193C2-48D0-41AE-9E39-46FA059AAF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B193C2-48D0-41AE-9E39-46FA059AAF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B193C2-48D0-41AE-9E39-46FA059AAF82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{65A81550-759F-47A0-9A64-1EF6B0F56571} = {DCA36531-223D-4A45-8657-40BEB86BF981}
+		{AE8803A0-3AB4-4983-98C7-47F26DFB3D25} = {DCA36531-223D-4A45-8657-40BEB86BF981}
+		{E87FB2EE-CF84-4225-BCDF-0FF75BC4D93D} = {DCA36531-223D-4A45-8657-40BEB86BF981}
+		{AF7397DD-0E76-478A-8CEA-988D2C328458} = {DCA36531-223D-4A45-8657-40BEB86BF981}
+		{E0CE9C7F-32E8-4FAE-96F6-2303B1269244} = {DCA36531-223D-4A45-8657-40BEB86BF981}
+		{22B49F74-FFA0-4D2C-ACCF-A37C9D12CCAB} = {DCA36531-223D-4A45-8657-40BEB86BF981}
+		{601972F4-6599-4C77-8590-32A73B6BE907} = {DCA36531-223D-4A45-8657-40BEB86BF981}
+		{542B55B1-05F1-453B-AB05-6423C58C9D86} = {DCA36531-223D-4A45-8657-40BEB86BF981}
+		{649FAE66-FFBC-4582-AE5B-7202CA782EBE} = {7F38B114-446C-4A38-A25A-F5FA0B4610F8}
+		{03E6B8F3-3750-475A-BD5B-259E19F35981} = {7F38B114-446C-4A38-A25A-F5FA0B4610F8}
+		{216977AC-B3DC-4D49-8FD7-A0BE3E6A87AF} = {7F38B114-446C-4A38-A25A-F5FA0B4610F8}
+		{6EC74D92-5F27-4F3A-A766-289B11CF60B1} = {7F38B114-446C-4A38-A25A-F5FA0B4610F8}
+		{D23BE81E-0E0C-4E7B-A091-5C590E2DE2EB} = {7F38B114-446C-4A38-A25A-F5FA0B4610F8}
+		{2CF58D76-EDDA-4F9A-84ED-5A3EE1BA9C27} = {7F38B114-446C-4A38-A25A-F5FA0B4610F8}
+		{97698FFC-C784-48ED-86D3-DF39D6789A11} = {7F38B114-446C-4A38-A25A-F5FA0B4610F8}
+		{78B193C2-48D0-41AE-9E39-46FA059AAF82} = {7F38B114-446C-4A38-A25A-F5FA0B4610F8}
+	EndGlobalSection
+EndGlobal
