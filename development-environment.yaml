@@ -1,0 +1,17 @@
+services:
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - /Users/data/mongo:/data/db
+    ports:
+      - 27017:27017
+  
+  rabbit:
+    image: rabbitmq:management-alpine
+    restart: always
+    volumes:
+      - /Users/data/rabbit:/var/lib/rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
