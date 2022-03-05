@@ -1,3 +1,7 @@
+### Stryker
+**/StrykerOutput/
+
+
 ### VisualStudioCode template
 .vscode/*
 !.vscode/settings.json

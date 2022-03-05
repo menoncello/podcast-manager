@@ -1,0 +1,18 @@
+{
+  "stryker-config": {
+    "solution": "./PodcastManager.sln",
+    "reporters": [
+      "progress",
+      "html"
+    ],
+
+    "project": 
+      "../PodcastManager.ItunesCrawler.Application.csproj"
+    ,
+    
+    "test-projects": [
+      "./ItunesCrawler/PodcastManager.ItunesCrawler.Tests/PodcastManager.ItunesCrawler.Tests.csproj",
+      "./FeedUpdater/PodcastManager.FeedUpdater.Tests/PodcastManager.FeedUpdater.Tests.csproj"
+    ]
+  }
+}

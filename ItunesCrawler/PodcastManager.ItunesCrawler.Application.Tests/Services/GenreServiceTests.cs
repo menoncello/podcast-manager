@@ -16,10 +16,7 @@ public class GenreServiceTests
     private EnqueuerSpy enqueuerSpy = null!;
 
     [SetUp]
-    public void SetUp()
-    {
-        GenreService();
-    }
+    public void SetUp() => GenreService();
 
     private void GenreService()
     {

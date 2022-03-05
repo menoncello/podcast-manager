@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{05659431
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		development-environment.yaml = development-environment.yaml
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+		stryker-config.json = stryker-config.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.Tests", "ItunesCrawler\PodcastManager.ItunesCrawler.Tests\PodcastManager.ItunesCrawler.Tests.csproj", "{AE8803A0-3AB4-4983-98C7-47F26DFB3D25}"
@@ -47,6 +49,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FADA4898-4787-417B-A00E-95236AF21413}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.Tests.Core", "Tests\PodcastManager.Tests.Core\PodcastManager.Tests.Core.csproj", "{C5DB1E32-C149-495E-937E-687674B9D5FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.Application.Tests", "ItunesCrawler\PodcastManager.ItunesCrawler.Application.Tests\PodcastManager.ItunesCrawler.Application.Tests.csproj", "{5565435A-BEB7-4D3F-B44F-6C87E7E18A3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,6 +130,10 @@ Global
 		{C5DB1E32-C149-495E-937E-687674B9D5FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5DB1E32-C149-495E-937E-687674B9D5FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5DB1E32-C149-495E-937E-687674B9D5FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5565435A-BEB7-4D3F-B44F-6C87E7E18A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5565435A-BEB7-4D3F-B44F-6C87E7E18A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5565435A-BEB7-4D3F-B44F-6C87E7E18A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5565435A-BEB7-4D3F-B44F-6C87E7E18A3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{65A81550-759F-47A0-9A64-1EF6B0F56571} = {DCA36531-223D-4A45-8657-40BEB86BF981}
@@ -145,5 +153,6 @@ Global
 		{97698FFC-C784-48ED-86D3-DF39D6789A11} = {7F38B114-446C-4A38-A25A-F5FA0B4610F8}
 		{78B193C2-48D0-41AE-9E39-46FA059AAF82} = {7F38B114-446C-4A38-A25A-F5FA0B4610F8}
 		{C5DB1E32-C149-495E-937E-687674B9D5FF} = {FADA4898-4787-417B-A00E-95236AF21413}
+		{5565435A-BEB7-4D3F-B44F-6C87E7E18A3C} = {DCA36531-223D-4A45-8657-40BEB86BF981}
 	EndGlobalSection
 EndGlobal

@@ -15,12 +15,10 @@ public class GenreService : IGenreInteractor
     {
         var genres = await itunes.GetGenres();
 
-        var tasks = genres
-            .SelectMany(_ => Letters, (genre, letter) => new Letter(genre, letter))
-            .Select(enqueuer.EnqueueLetter)
-            .ToArray();
+        var letters = genres
+            .SelectMany(_ => Letters, (genre, letter) => new Letter(genre, letter));
 
-        Task.WaitAll(tasks);
+        foreach (var letter in letters) await enqueuer.EnqueueLetter(letter);
     }
 
     public void SetItunes(IItunesAdapter itunes)
