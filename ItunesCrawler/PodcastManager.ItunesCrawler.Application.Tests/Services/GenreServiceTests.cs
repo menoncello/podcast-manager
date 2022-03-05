@@ -38,7 +38,7 @@ public class GenreServiceTests
     public async Task Execute_ShouldCallGetGenreFromItunesOnce()
     {
         await service.Execute();
-        itunesSpy.GetGenresSpy.ShouldBeCalledOnce();
+        itunesSpy.ListGenresSpy.ShouldBeCalledOnce();
         enqueuerSpy.EnqueueLetterSpy.ShouldBeCalled(81);
         enqueuerSpy.EnqueueLetterSpy.Parameters.First()
             .Should().Be(new Letter(new AppleGenre(1, "Genre 1"), 'A'));

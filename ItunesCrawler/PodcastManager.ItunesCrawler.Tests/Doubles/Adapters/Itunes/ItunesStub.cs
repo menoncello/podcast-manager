@@ -1,11 +1,22 @@
 using System.Threading.Tasks;
 using PodcastManager.ItunesCrawler.Adapters;
 using PodcastManager.ItunesCrawler.Messages;
+using PodcastManager.ItunesCrawler.Models;
 
 namespace PodcastManager.ItunesCrawler.Doubles.Adapters.Itunes;
 
 public class ItunesStub : IItunesAdapter
 {
+    public int[] PodcastCodes { get; } = {1, 2, 3, 4};
+
+    public ApplePodcast[] Podcasts { get; } =
+    {
+        new(),
+        new(),
+        new(),
+        new()
+    };
+
     public virtual Task<AppleGenre[]> GetGenres()
     {
         return Task.FromResult(new[]
@@ -18,4 +29,10 @@ public class ItunesStub : IItunesAdapter
 
     public virtual Task<short> GetTotalPages(Letter letter) => 
         Task.FromResult((short) 4);
+
+    public virtual Task<int[]> PodcastsFromPage(Page page) =>
+        Task.FromResult(PodcastCodes);
+    
+    public virtual Task<ApplePodcast[]> GetPodcasts(int[] codes) =>
+        Task.FromResult(Podcasts);
 }
