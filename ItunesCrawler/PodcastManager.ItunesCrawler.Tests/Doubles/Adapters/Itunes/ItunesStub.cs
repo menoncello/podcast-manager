@@ -15,4 +15,7 @@ public class ItunesStub : IItunesAdapter
             new AppleGenre(3, "Genre 3")
         });
     }
+
+    public virtual Task<short> GetTotalPages(Letter letter) => 
+        Task.FromResult((short) 4);
 }

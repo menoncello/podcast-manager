@@ -5,4 +5,5 @@ namespace PodcastManager.ItunesCrawler.Adapters;
 public interface IItunesAdapter
 {
     Task<AppleGenre[]> GetGenres();
+    Task<short> GetTotalPages(Letter letter);
 }

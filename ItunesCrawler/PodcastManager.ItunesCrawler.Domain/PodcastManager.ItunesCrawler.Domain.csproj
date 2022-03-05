@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PodcastManager.ItunesCrawler.Core\PodcastManager.ItunesCrawler.Core.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -16,9 +16,9 @@ public class GenreServiceTests
     private EnqueuerSpy enqueuerSpy = null!;
 
     [SetUp]
-    public void SetUp() => GenreService();
+    public void SetUp() => CreateService();
 
-    private void GenreService()
+    private void CreateService()
     {
         itunesSpy = new ItunesSpy();
         enqueuerSpy = new EnqueuerSpy();
