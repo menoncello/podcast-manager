@@ -92,19 +92,37 @@ public class ItunesAdapterTests
             result.Should().Be(expected);
         }
 
-        // [Test]
-        // public async Task GetTotalPages_WithoutDataShouldBeEmpty()
-        // {
-        //     var result = await adapter.GetTotalPages(new Letter(new AppleGenre(1, "Genre 1"), 'A'));
-        //     result.Should().Be(35);
-        // }
+        [Test]
+        public async Task PodcastsFromPage_ShouldReturn20Podcasts()
+        {
+            var page = new Page(new Letter(new AppleGenre(1, "Genre 1"), 'A'), 1);
+            var result = await adapter.PodcastsFromPage(page);
+            result.Should().HaveCount(20);
+            result.Should().BeEquivalentTo(new[]
+            {
+                1572253369,
+                1183036922,
+                1573139700,
+                1569069227,
+                1516734036,
+                1506820910,
+                1386268221,
+                1583548784,
+                1519507475,
+                382483375, 
+                1569041481,
+                1570687060,
+                1562202386,
+                1526576128,
+                1555057950,
+                1561888717,
+                1557799390,
+                597373344, 
+                1567325061,
+                1547768827
+            });
+        }
         
-        // public async Task PodcastsFromPage_WithoutDataShouldBeEmpty()
-        // {
-        //     var result = await adapter.PodcastsFromPage(new Page(new Letter(new AppleGenre(1, "Genre 1"), 'A'), 1));
-        //     result.Should().BeEmpty();
-        // }
-        //
         // [Test]
         // public async Task GetPodcasts_WithoutDataShouldBeEmpty()
         // {

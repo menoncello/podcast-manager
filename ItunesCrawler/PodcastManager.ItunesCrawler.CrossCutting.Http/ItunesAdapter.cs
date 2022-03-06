@@ -27,17 +27,30 @@ public class ItunesAdapter : IItunesAdapter
         doc.LoadHtml(html);
 
         var parent = doc.GetElementbyId("genre-nav");
-        var elements = parent?.Descendants("a")
-            .Where(x => x.Attributes.Contains("href"))
-            .ToList();
-
-        var genres = elements
-            ?.Select(e => new AppleGenre(
-                    Convert.ToInt32(e.Attributes["href"].Value.Split("/id")[1]),
-                    e.InnerText
-                )).ToArray();
+        var genres = ElementsToGenres(GetLinkElements(parent));
 
         return genres ?? Array.Empty<AppleGenre>();
+        
+        AppleGenre[]? ElementsToGenres(IEnumerable<HtmlNode>? elements)
+        {
+            return elements?
+                .Select(e => new AppleGenre(GetUrlId(e), e.InnerText ))
+                .ToArray();
+        }
+    }
+
+
+    private static IEnumerable<HtmlNode>? GetLinkElements(HtmlNode htmlNode)
+    {
+        return htmlNode?.Descendants("a")
+            .Where(x => x.Attributes.Contains("href"))
+            .ToList();
+    }
+
+    private static int GetUrlId(HtmlNode e)
+    {
+        var href = e.Attributes["href"].Value;
+        return Convert.ToInt32(href.Split("/id")[1]);
     }
 
     public async Task<short> GetTotalPages(Letter letter)
@@ -71,9 +84,24 @@ public class ItunesAdapter : IItunesAdapter
         }
     }
 
-    public Task<int[]> PodcastsFromPage(Page page)
+    public async Task<int[]> PodcastsFromPage(Page page)
     {
-        return Task.FromResult(Array.Empty<int>());
+        var client = factory.CreateClient();
+        var ((appleGenre, c), number) = page;
+        var url = string.Format(PageUrl, appleGenre.Id, c, number);
+        var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, url));
+        var html = await response.Content.ReadAsStringAsync();
+
+        var doc = new HtmlDocument();
+        doc.LoadHtml(html);
+
+        var parent = doc.GetElementbyId("selectedcontent");
+        
+        if (parent == null) return Array.Empty<int>();
+
+        return GetLinkElements(parent)!
+            .Select(GetUrlId)
+            .ToArray();
     }
 
     public Task<ApplePodcast[]> GetPodcasts(int[] codes)
