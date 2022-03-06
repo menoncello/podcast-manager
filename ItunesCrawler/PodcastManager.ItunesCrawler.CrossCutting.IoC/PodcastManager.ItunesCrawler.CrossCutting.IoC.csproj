@@ -6,4 +6,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PodcastManager.ItunesCrawler.Application\PodcastManager.ItunesCrawler.Application.csproj" />
+      <ProjectReference Include="..\PodcastManager.ItunesCrawler.CrossCutting.Http\PodcastManager.ItunesCrawler.CrossCutting.Http.csproj" />
+      <ProjectReference Include="..\PodcastManager.ItunesCrawler.CrossCutting.Mongo\PodcastManager.ItunesCrawler.CrossCutting.Mongo.csproj" />
+      <ProjectReference Include="..\PodcastManager.ItunesCrawler.CrossCutting.Rabbit\PodcastManager.ItunesCrawler.CrossCutting.Rabbit.csproj" />
+      <ProjectReference Include="..\PodcastManager.ItunesCrawler.Domain\PodcastManager.ItunesCrawler.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    </ItemGroup>
+
 </Project>

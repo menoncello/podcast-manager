@@ -6,9 +6,13 @@ namespace PodcastManager.ItunesCrawler.CrossCutting.Mongo;
 
 public class MongoPodcastRepository : IPodcastRepository
 {
+    private IMongoDatabase database = null!;
+
+    public void SetDatabase(IMongoDatabase database) =>
+        this.database = database;
+    
     public async Task Upsert(Podcast[] podcasts)
     {
-        var database = GetDatabase();
         var collection = database.GetCollection<Podcast>("podcasts");
 
         var codes = podcasts.Select(x => x.Code).ToList();
@@ -42,11 +46,5 @@ public class MongoPodcastRepository : IPodcastRepository
                 .Find(x => codes.Contains(x.Code))
                 .ToListAsync();
         }
-    }
-
-    private static IMongoDatabase GetDatabase()
-    {
-        var client = new MongoClient(Configuration.MongoUrl);
-        return client.GetDatabase("podcastManager");
     }
 }
