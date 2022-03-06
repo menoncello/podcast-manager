@@ -4,5 +4,5 @@ namespace PodcastManager.ItunesCrawler.Domain.Repositories;
 
 public interface IPodcastRepository
 {
-    Task Upsert(ApplePodcast[] podcasts);
+    Task Upsert(Podcast[] podcasts);
 }
