@@ -1,4 +1,5 @@
 using HtmlAgilityPack;
+using Newtonsoft.Json;
 using PodcastManager.ItunesCrawler.Adapters;
 using PodcastManager.ItunesCrawler.Messages;
 using PodcastManager.ItunesCrawler.Models;
@@ -11,6 +12,7 @@ public class ItunesAdapter : IItunesAdapter
 
     public const string GenresUrl = "https://podcasts.apple.com/us/genre/podcasts/id26";
     public const string PageUrl = "https://podcasts.apple.com/us/genre/podcasts-arts-books/id{0}?letter={1}&page={2}";
+    public const string PodcastUrl = "https://itunes.apple.com/lookup?id={0}";
 
     public void SetFactory(IHttpClientFactory factory)
     {
@@ -104,8 +106,14 @@ public class ItunesAdapter : IItunesAdapter
             .ToArray();
     }
 
-    public Task<ApplePodcast[]> GetPodcasts(int[] codes)
+    public async Task<ApplePodcast[]> GetPodcasts(int[] codes)
     {
-        return Task.FromResult(Array.Empty<ApplePodcast>());
+        var url = string.Format(PodcastUrl, string.Join(",", codes));
+        var client = factory.CreateClient();
+        var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, url));
+        var json = await response.Content.ReadAsStringAsync();
+        var result = JsonConvert.DeserializeObject<AppleResult>(json);
+        
+        return result?.Results ?? Array.Empty<ApplePodcast>();
     }
 }

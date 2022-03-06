@@ -123,11 +123,17 @@ public class ItunesAdapterTests
             });
         }
         
-        // [Test]
-        // public async Task GetPodcasts_WithoutDataShouldBeEmpty()
-        // {
-        //     var result = await adapter.GetPodcasts(new[] {1, 2, 3, 4});
-        //     result.Should().BeEmpty();
-        // }
+        [Test]
+        public async Task GetPodcasts_ShouldReturns13Podcasts()
+        {
+            var codes = new[]
+            {
+                1146613549, 1157592262, 942491627, 1444893065, 1485274451,
+                1473538883, 1366367676, 1049710625, 1382253130, 1530449093,
+                381816509, 1592153224, 1580793616
+            };
+            var result = await adapter.GetPodcasts(codes);
+            result.Should().HaveCount(13);
+        }
     }
 }

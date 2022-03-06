@@ -11,10 +11,14 @@ public class ItunesStub : IItunesAdapter
 
     public ApplePodcast[] Podcasts { get; } =
     {
-        new(),
-        new(),
-        new(),
-        new()
+        new(1, "PC 1", "feed1", new[] {1, 2, 3},
+            new[] {"Genre 1", "Genre 2", "Genre 3"}, "image 1", "Genre 1"),
+        new(2, "PC 2", "feed2", new[] {1, 2, 3},
+            new[] {"Genre 1", "Genre 2", "Genre 3"}, "image 2", "Genre 2"),
+        new(3, "PC 3", "feed3", new[] {1, 2, 3},
+            new[] {"Genre 1", "Genre 2", "Genre 3"}, "image 3", "Genre 3"),
+        new(4, "PC 4", "feed4", new[] {1, 2, 3},
+            new[] {"Genre 1", "Genre 2", "Genre 3"}, "image 4", "Genre 2"),
     };
 
     public virtual Task<AppleGenre[]> GetGenres()
