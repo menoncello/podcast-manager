@@ -1,4 +1,3 @@
-using PodcastManager.ItunesCrawler.Application.Services;
 using PodcastManager.ItunesCrawler.Domain.Interactors;
 
 namespace PodcastManager.ItunesCrawler.Domain.Factories;

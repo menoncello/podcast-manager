@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PodcastManager.Administration.Domain\PodcastManager.Administration.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

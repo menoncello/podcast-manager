@@ -6,4 +6,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Factories" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PodcastManager.Administration.Core\PodcastManager.Administration.Core.csproj" />
+    </ItemGroup>
+
 </Project>
