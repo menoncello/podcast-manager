@@ -52,6 +52,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.Tests.Core",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.Application.Tests", "ItunesCrawler\PodcastManager.ItunesCrawler.Application.Tests\PodcastManager.ItunesCrawler.Application.Tests.csproj", "{5565435A-BEB7-4D3F-B44F-6C87E7E18A3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.CrossCutting.Http.Tests", "ItunesCrawler\PodcastManager.ItunesCrawler.CrossCutting.Http.Tests\PodcastManager.ItunesCrawler.CrossCutting.Http.Tests.csproj", "{BEE37C5B-3AF0-49D4-9603-E3C46985B64C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.CrossCutting.Http", "ItunesCrawler\PodcastManager.ItunesCrawler.CrossCutting.Http\PodcastManager.ItunesCrawler.CrossCutting.Http.csproj", "{72607BCC-5A74-46B5-B785-55ACC89B4A4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.CrossCutting.Rabbit", "ItunesCrawler\PodcastManager.ItunesCrawler.CrossCutting.Rabbit\PodcastManager.ItunesCrawler.CrossCutting.Rabbit.csproj", "{EC95FD33-E572-4508-91B9-FDD482BAB4D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -134,6 +140,18 @@ Global
 		{5565435A-BEB7-4D3F-B44F-6C87E7E18A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5565435A-BEB7-4D3F-B44F-6C87E7E18A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5565435A-BEB7-4D3F-B44F-6C87E7E18A3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEE37C5B-3AF0-49D4-9603-E3C46985B64C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEE37C5B-3AF0-49D4-9603-E3C46985B64C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEE37C5B-3AF0-49D4-9603-E3C46985B64C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEE37C5B-3AF0-49D4-9603-E3C46985B64C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72607BCC-5A74-46B5-B785-55ACC89B4A4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72607BCC-5A74-46B5-B785-55ACC89B4A4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72607BCC-5A74-46B5-B785-55ACC89B4A4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72607BCC-5A74-46B5-B785-55ACC89B4A4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC95FD33-E572-4508-91B9-FDD482BAB4D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC95FD33-E572-4508-91B9-FDD482BAB4D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC95FD33-E572-4508-91B9-FDD482BAB4D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC95FD33-E572-4508-91B9-FDD482BAB4D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{65A81550-759F-47A0-9A64-1EF6B0F56571} = {DCA36531-223D-4A45-8657-40BEB86BF981}
@@ -154,5 +172,8 @@ Global
 		{78B193C2-48D0-41AE-9E39-46FA059AAF82} = {7F38B114-446C-4A38-A25A-F5FA0B4610F8}
 		{C5DB1E32-C149-495E-937E-687674B9D5FF} = {FADA4898-4787-417B-A00E-95236AF21413}
 		{5565435A-BEB7-4D3F-B44F-6C87E7E18A3C} = {DCA36531-223D-4A45-8657-40BEB86BF981}
+		{BEE37C5B-3AF0-49D4-9603-E3C46985B64C} = {DCA36531-223D-4A45-8657-40BEB86BF981}
+		{72607BCC-5A74-46B5-B785-55ACC89B4A4E} = {DCA36531-223D-4A45-8657-40BEB86BF981}
+		{EC95FD33-E572-4508-91B9-FDD482BAB4D0} = {DCA36531-223D-4A45-8657-40BEB86BF981}
 	EndGlobalSection
 EndGlobal

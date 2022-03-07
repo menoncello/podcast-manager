@@ -13,7 +13,7 @@ public class LetterService : ILetterInteractor
     {
         var totalPages = await itunes.GetTotalPages(letter);
         for (short i = 1; i < totalPages + 1; i++)
-            await enqueuer.EnqueuePage(new Page(letter, i));
+            enqueuer.EnqueuePage(new Page(letter, i));
     }
 
     public void SetEnqueuer(IEnqueuerAdapter enqueuer)

@@ -1,10 +1,12 @@
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using PodcastManager.ItunesCrawler.Domain.Interactors;
 using PodcastManager.ItunesCrawler.Doubles.Adapters.Itunes;
-using PodcastManager.ItunesCrawler.Doubles.Repositories.Podcast;
+using PodcastManager.ItunesCrawler.Doubles.Repositories;
 using PodcastManager.ItunesCrawler.Messages;
+using PodcastManager.ItunesCrawler.Models;
 
 namespace PodcastManager.ItunesCrawler.Application.Services;
 
@@ -44,6 +46,7 @@ public class PageServiceTests
         itunesSpy.GetPodcastsSpy.LastParameter.Should().BeEquivalentTo(itunesSpy.PodcastCodes);
         
         repositorySpy.UpsertSpy.ShouldBeCalledOnce();
-        repositorySpy.UpsertSpy.LastParameter.Should().BeEquivalentTo(itunesSpy.Podcasts);
+        repositorySpy.UpsertSpy.LastParameter.Should()
+            .BeEquivalentTo(itunesSpy.Podcasts.Select(Podcast.FromApple));
     }
 }

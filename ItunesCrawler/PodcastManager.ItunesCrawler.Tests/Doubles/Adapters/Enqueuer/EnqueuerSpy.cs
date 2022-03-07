@@ -10,15 +10,7 @@ public class EnqueuerSpy : IEnqueuerAdapter
     public SpyHelper<Letter> EnqueueLetterSpy { get; } = new();
     public SpyHelper<Page> EnqueuePageSpy { get; } = new();
 
-    public Task EnqueueLetter(Letter letter)
-    {
-        EnqueueLetterSpy.Call(letter);
-        return Task.CompletedTask;
-    }
+    public void EnqueueLetter(Letter letter) => EnqueueLetterSpy.Call(letter);
 
-    public Task EnqueuePage(Page page)
-    {
-        EnqueuePageSpy.Call(page);
-        return Task.CompletedTask;
-    }
+    public void EnqueuePage(Page page) => EnqueuePageSpy.Call(page);
 }
