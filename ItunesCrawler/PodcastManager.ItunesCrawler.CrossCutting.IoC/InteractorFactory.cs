@@ -21,8 +21,7 @@ public class InteractorFactory : IInteractorFactory
             HostName = Rabbit.Configuration.Host
         };
     }
-
-
+    
     public IGenreInteractor CreateGenre()
     {
         var service = new GenreService();

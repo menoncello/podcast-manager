@@ -8,4 +8,9 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PodcastManager.ItunesCrawler.CrossCutting.IoC\PodcastManager.ItunesCrawler.CrossCutting.IoC.csproj" />
+      <ProjectReference Include="..\PodcastManager.ItunesCrawler.CrossCutting.Mongo\PodcastManager.ItunesCrawler.CrossCutting.Mongo.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -13,23 +13,22 @@ public class RabbitEnqueuerAdapter : IEnqueuerAdapter, IDisposable
     public void SetConnection(IConnection connection) =>
         this.connection = connection;
     
-    public Task EnqueueLetter(Letter letter) =>
-        BasicPublishAsync(Configuration.ImportLetterQueue, letter);
+    public void EnqueueLetter(Letter letter) =>
+        BasicPublish(Configuration.ImportLetterQueue, letter);
 
-    public Task EnqueuePage(Page page) =>
-        BasicPublishAsync(Configuration.ImportPageQueue, page);
+    public void EnqueuePage(Page page) =>
+        BasicPublish(Configuration.ImportPageQueue, page);
 
     public void Dispose() => connection.Dispose();
-
-    private Task BasicPublishAsync<T>(string queue, T message) =>
-        new(() => BasicPublish(queue, message));
 
     private void BasicPublish<T>(string queue, T message)
     {
         using var channel = connection.CreateModel();
-        channel.QueueDeclare(queue);
+        channel.QueueDeclare(queue, true, false, autoDelete: false);
         var json = JsonConvert.SerializeObject(message);
         var body = Encoding.UTF8.GetBytes(json);
-        channel.BasicPublish(string.Empty, queue, null, body);
+        var properties = channel.CreateBasicProperties();
+        properties.Persistent = true;
+        channel.BasicPublish(string.Empty, queue, properties, body);
     }
 }

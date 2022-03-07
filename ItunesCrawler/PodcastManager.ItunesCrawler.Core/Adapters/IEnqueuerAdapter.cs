@@ -4,6 +4,6 @@ namespace PodcastManager.ItunesCrawler.Adapters;
 
 public interface IEnqueuerAdapter
 {
-    Task EnqueueLetter(Letter letter);
-    Task EnqueuePage(Page page);
+    void EnqueueLetter(Letter letter);
+    void EnqueuePage(Page page);
 }

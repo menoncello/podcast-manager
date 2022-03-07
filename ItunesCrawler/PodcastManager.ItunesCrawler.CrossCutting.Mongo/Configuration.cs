@@ -7,5 +7,5 @@ public static class Configuration
         ?? "mongodb://127.0.0.1:27017/";
     public static readonly string MongoDatabase =
         Environment.GetEnvironmentVariable("MongoDatabase")
-        ?? "mongodb://127.0.0.1:27017/";
+        ?? "podcastManager";
 }

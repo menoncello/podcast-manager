@@ -36,6 +36,7 @@ public class ItunesAdapter : IItunesAdapter
         AppleGenre[]? ElementsToGenres(IEnumerable<HtmlNode>? elements)
         {
             return elements?
+                .Where(e => e.Attributes["href"]?.Value?.Contains("/id") == true)
                 .Select(e => new AppleGenre(GetUrlId(e), e.InnerText ))
                 .ToArray();
         }
@@ -46,13 +47,22 @@ public class ItunesAdapter : IItunesAdapter
     {
         return htmlNode?.Descendants("a")
             .Where(x => x.Attributes.Contains("href"))
+            .Where(x => x.Attributes["href"].Value.Contains("/id"))
             .ToList();
     }
 
     private static int GetUrlId(HtmlNode e)
     {
-        var href = e.Attributes["href"].Value;
-        return Convert.ToInt32(href.Split("/id")[1]);
+        try
+        {
+            var href = e.Attributes["href"].Value;
+            return Convert.ToInt32(href.Split("/id").Last());
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine(exception);
+            throw;
+        }
     }
 
     public async Task<short> GetTotalPages(Letter letter)
@@ -62,27 +72,35 @@ public class ItunesAdapter : IItunesAdapter
 
         async Task<short> GetLastPage(short page = 1)
         {
-            var url = string.Format(PageUrl, letter.Genre.Id, letter.Char, page);
-            var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, url));
-            var html = await response.Content.ReadAsStringAsync();
+            try
+            {
+                var url = string.Format(PageUrl, letter.Genre.Id, letter.Char, page);
+                var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, url));
+                var html = await response.Content.ReadAsStringAsync();
 
-            var doc = new HtmlDocument();
-            doc.LoadHtml(html);
+                var doc = new HtmlDocument();
+                doc.LoadHtml(html);
 
-            var parent = doc.DocumentNode
-                .Descendants("ul")
-                .FirstOrDefault(x => x.Attributes["class"].Value == "list paginate");
+                var parent = doc.DocumentNode
+                    ?.Descendants("ul")
+                    ?.FirstOrDefault(x => x.Attributes["class"]?.Value == "list paginate");
 
-            if (parent == null) return 0;
+                if (parent == null) return 0;
 
-            var elements = parent.Descendants("a").ToArray();
-            var lastPage = short.Parse(elements.Last().InnerText == "Next"
-                ? elements[^2].InnerText
-                : elements[^1].InnerText);
+                var elements = parent.Descendants("a").ToArray();
+                var lastPage = short.Parse(elements.Last().InnerText == "Next"
+                    ? elements[^2].InnerText
+                    : elements[^1].InnerText);
 
-            return lastPage == page || lastPage < 18
-                ? lastPage
-                : await GetLastPage(lastPage);
+                return lastPage == page || lastPage < 18
+                    ? lastPage
+                    : await GetLastPage(lastPage);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 
@@ -108,12 +126,22 @@ public class ItunesAdapter : IItunesAdapter
 
     public async Task<ApplePodcast[]> GetPodcasts(int[] codes)
     {
-        var url = string.Format(PodcastUrl, string.Join(",", codes));
-        var client = factory.CreateClient();
-        var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, url));
-        var json = await response.Content.ReadAsStringAsync();
-        var result = JsonConvert.DeserializeObject<AppleResult>(json);
-        
-        return result?.Results ?? Array.Empty<ApplePodcast>();
+        var result = new List<ApplePodcast>();
+
+        while (codes.Any())
+        {
+            var cs = codes.Take(40);
+            var url = string.Format(PodcastUrl, string.Join(",", cs));
+            var client = factory.CreateClient();
+            var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, url));
+            var json = await response.Content.ReadAsStringAsync();
+            var appleResult = JsonConvert.DeserializeObject<AppleResult>(json);
+            if (appleResult?.Results?.Any() == true)
+                result.AddRange(appleResult.Results);
+            if (codes.Length < 40) break;
+            codes = codes[40..];
+        }
+
+        return result.ToArray();
     }
 }
