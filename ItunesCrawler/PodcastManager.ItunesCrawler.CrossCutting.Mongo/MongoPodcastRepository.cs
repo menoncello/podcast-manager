@@ -26,6 +26,8 @@ public class MongoPodcastRepository : IPodcastRepository
         requests.AddRange(@new.Select(x => new InsertOneModel<PodcastData>(x)));
         requests.AddRange(existingPodcasts.Select(CreateUpdateModel));
 
+        if (!requests.Any()) return;
+
         var response = await collection.BulkWriteAsync(requests);
         
         Console.WriteLine($"{DateTime.Now} - Total podcasts: {podcasts.Length} - new: {@new.Count} - updated: {response.ModifiedCount}");
