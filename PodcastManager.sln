@@ -82,6 +82,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.Administrati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.Administration.Application.Tests", "Administration\PodcastManager.Administration.Application.Tests\PodcastManager.Administration.Application.Tests.csproj", "{A81FC0AB-4FE5-4D43-94EA-D8C63D3861E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.Core.CrossCutting.Mongo", "Core\PodcastManager.Core.CrossCutting.Mongo\PodcastManager.Core.CrossCutting.Mongo.csproj", "{C4287CE0-2CB3-4B13-A94E-386469E72157}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.Core.Domain", "Core\PodcastManager.Core.Domain\PodcastManager.Core.Domain.csproj", "{9915CFFE-699C-4817-807C-53D9E277DF18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -216,6 +220,14 @@ Global
 		{A81FC0AB-4FE5-4D43-94EA-D8C63D3861E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A81FC0AB-4FE5-4D43-94EA-D8C63D3861E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A81FC0AB-4FE5-4D43-94EA-D8C63D3861E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4287CE0-2CB3-4B13-A94E-386469E72157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4287CE0-2CB3-4B13-A94E-386469E72157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4287CE0-2CB3-4B13-A94E-386469E72157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4287CE0-2CB3-4B13-A94E-386469E72157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9915CFFE-699C-4817-807C-53D9E277DF18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9915CFFE-699C-4817-807C-53D9E277DF18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9915CFFE-699C-4817-807C-53D9E277DF18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9915CFFE-699C-4817-807C-53D9E277DF18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{65A81550-759F-47A0-9A64-1EF6B0F56571} = {DCA36531-223D-4A45-8657-40BEB86BF981}
@@ -249,5 +261,7 @@ Global
 		{22FE08DC-19BC-4ABD-9AB4-3EE5007ABF7E} = {301A43B4-9C7F-4A95-BAFB-C13EEA080D16}
 		{567D160F-D8C2-4A1D-B826-7C995B878485} = {301A43B4-9C7F-4A95-BAFB-C13EEA080D16}
 		{A81FC0AB-4FE5-4D43-94EA-D8C63D3861E8} = {301A43B4-9C7F-4A95-BAFB-C13EEA080D16}
+		{C4287CE0-2CB3-4B13-A94E-386469E72157} = {ADD12885-E8A2-482A-A2BE-23110751E8CA}
+		{9915CFFE-699C-4817-807C-53D9E277DF18} = {ADD12885-E8A2-482A-A2BE-23110751E8CA}
 	EndGlobalSection
 EndGlobal

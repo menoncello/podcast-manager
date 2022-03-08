@@ -4,5 +4,5 @@ namespace PodcastManager.ItunesCrawler.Domain.Repositories;
 
 public interface IPodcastRepository
 {
-    Task Upsert(Podcast[] podcasts);
+    Task<(int total, int newPodcasts, int updated)> Upsert(Podcast[] podcasts);
 }

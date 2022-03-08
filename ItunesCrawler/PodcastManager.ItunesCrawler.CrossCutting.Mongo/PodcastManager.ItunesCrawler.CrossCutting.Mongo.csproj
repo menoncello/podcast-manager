@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.CrossCutting.Mongo\PodcastManager.Core.CrossCutting.Mongo.csproj" />
       <ProjectReference Include="..\PodcastManager.ItunesCrawler.Domain\PodcastManager.ItunesCrawler.Domain.csproj" />
     </ItemGroup>
 

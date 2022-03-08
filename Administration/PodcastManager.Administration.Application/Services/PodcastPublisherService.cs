@@ -16,8 +16,7 @@ public class PodcastPublisherService : IPodcastPublisherInteractor
 
     public async Task PublishAllFromPlaylists()
     {
-        var podcasts = await playlistRepository.ListRelatedPodcasts();
-        var codes = podcasts.Select(x => x.Code).ToArray();
+        var codes = await playlistRepository.ListRelatedPodcasts();
         await podcastRepository.PublishPodcasts(codes);
     }
 }

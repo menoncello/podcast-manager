@@ -9,8 +9,8 @@ public class RepositoryFactory : IRepositoryFactory
 {
     public IPodcastRepository CreatePodcast()
     {
-        var client = new MongoClient(Mongo.Configuration.MongoUrl);
-        var database = client.GetDatabase(Mongo.Configuration.MongoDatabase);
+        var client = new MongoClient(Configuration.MongoUrl);
+        var database = client.GetDatabase(Configuration.MongoDatabase);
         var repository = new MongoPodcastRepository();
         
         repository.SetDatabase(database);
