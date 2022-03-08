@@ -10,18 +10,15 @@ namespace PodcastManager.ItunesCrawler.CrossCutting.IoC;
 
 public class InteractorFactory : IInteractorFactory
 {
-    private readonly IRepositoryFactory repositoryFactory;
-    private readonly IConnectionFactory rabbitConnectionFactory;
+    private IRepositoryFactory repositoryFactory = null!;
+    private IConnectionFactory connectionFactory = null!;
 
-    public InteractorFactory(IRepositoryFactory repositoryFactory)
-    {
+    public void SetRepositoryFactory(IRepositoryFactory repositoryFactory) => 
         this.repositoryFactory = repositoryFactory;
-        rabbitConnectionFactory = new ConnectionFactory
-        {
-            HostName = Rabbit.Configuration.Host
-        };
-    }
-    
+
+    public void SetConnectionFactory(IConnectionFactory connectionFactory) => 
+        this.connectionFactory = connectionFactory;
+
     public IGenreInteractor CreateGenre()
     {
         var service = new GenreService();
@@ -58,7 +55,7 @@ public class InteractorFactory : IInteractorFactory
     private IEnqueuerAdapter CreateEnqueuerAdapter()
     {
         var adapter = new RabbitEnqueuerAdapter();
-        adapter.SetConnection(rabbitConnectionFactory.CreateConnection());
+        adapter.SetConnection(connectionFactory.CreateConnection());
         return adapter;
     }
 }
