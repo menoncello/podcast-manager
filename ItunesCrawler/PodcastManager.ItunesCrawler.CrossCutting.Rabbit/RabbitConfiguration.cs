@@ -1,6 +1,6 @@
 namespace PodcastManager.ItunesCrawler.CrossCutting.Rabbit;
 
-public static class Configuration
+public class RabbitConfiguration : PodcastManager.CrossCutting.Rabbit.BaseRabbitConfiguration
 {
     public static string ImportAllQueue { get; } =
         Environment.GetEnvironmentVariable("ImportAllQueue")

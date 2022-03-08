@@ -7,4 +7,8 @@
         <RootNamespace>PodcastManager.ItunesCrawler</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.Domain\PodcastManager.Core.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

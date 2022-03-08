@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.CrossCutting.Rabbit\PodcastManager.Core.CrossCutting.Rabbit.csproj" />
+      <ProjectReference Include="..\..\ItunesCrawler\PodcastManager.ItunesCrawler.CrossCutting.Rabbit\PodcastManager.ItunesCrawler.CrossCutting.Rabbit.csproj" />
+      <ProjectReference Include="..\PodcastManager.Administration.CrossCutting.IoC\PodcastManager.Administration.CrossCutting.IoC.csproj" />
+      <ProjectReference Include="..\PodcastManager.Administration.CrossCutting.Rabbit\PodcastManager.Administration.CrossCutting.Rabbit.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="RabbitMQ.Client" Version="6.2.4" />
+    </ItemGroup>
+
+</Project>

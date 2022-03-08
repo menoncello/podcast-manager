@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.CrossCutting.Mongo\PodcastManager.Core.CrossCutting.Mongo.csproj" />
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.Domain\PodcastManager.Core.Domain.csproj" />
+      <ProjectReference Include="..\PodcastManager.Administration.Domain\PodcastManager.Administration.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

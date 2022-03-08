@@ -1,6 +1,6 @@
 namespace PodcastManager.CrossCutting.Rabbit;
 
-public static class Configuration
+public class BaseRabbitConfiguration
 {
     public static readonly string Host =
         Environment.GetEnvironmentVariable("RabbitHost")

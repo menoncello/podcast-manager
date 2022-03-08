@@ -1,3 +1,4 @@
+using PodcastManager.Domain.Models;
 using PodcastManager.ItunesCrawler.Models;
 
 namespace PodcastManager.ItunesCrawler.CrossCutting.Http;

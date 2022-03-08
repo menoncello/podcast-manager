@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
+using PodcastManager.ItunesCrawler.Domain.Interactors;
 using PodcastManager.ItunesCrawler.Doubles.Adapters.Enqueuer;
 using PodcastManager.ItunesCrawler.Doubles.Adapters.Itunes;
 using PodcastManager.ItunesCrawler.Messages;

@@ -1,4 +1,4 @@
-namespace PodcastManager.ItunesCrawler.Models;
+namespace PodcastManager.Domain.Models;
 
 public record ApplePodcast(
     int CollectionId,

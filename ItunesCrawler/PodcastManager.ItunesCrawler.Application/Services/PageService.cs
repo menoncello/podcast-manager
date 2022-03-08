@@ -19,7 +19,11 @@ public class PageService : IPageInteractor
             .Where(x => !string.IsNullOrEmpty(x.FeedUrl))
             .Select(Podcast.FromApple)
             .ToArray();
-        await repository.Upsert(podcasts);
+        var (total, newPodcasts, updated) = await repository.Upsert(podcasts);
+        
+        Console.WriteLine($"{DateTime.Now} - {page.Letter.Genre} '{page.Letter.Char}' - " +
+                          $" {page.Number} - Total podcasts: {total} - " +
+                          $"new: {newPodcasts} - updated: {updated}");
     }
 
     public void SetItunes(IItunesAdapter itunes) => this.itunes = itunes;

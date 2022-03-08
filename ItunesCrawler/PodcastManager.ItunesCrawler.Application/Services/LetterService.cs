@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using PodcastManager.ItunesCrawler.Adapters;
+using PodcastManager.ItunesCrawler.Domain.Interactors;
 using PodcastManager.ItunesCrawler.Messages;
 
 namespace PodcastManager.ItunesCrawler.Application.Services;

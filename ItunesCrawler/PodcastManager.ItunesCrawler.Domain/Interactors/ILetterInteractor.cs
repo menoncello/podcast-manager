@@ -1,7 +1,6 @@
-using System.Threading.Tasks;
 using PodcastManager.ItunesCrawler.Messages;
 
-namespace PodcastManager.ItunesCrawler.Application.Services;
+namespace PodcastManager.ItunesCrawler.Domain.Interactors;
 
 public interface ILetterInteractor
 {
