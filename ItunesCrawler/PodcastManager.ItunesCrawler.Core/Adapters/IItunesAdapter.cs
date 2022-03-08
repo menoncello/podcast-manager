@@ -1,3 +1,4 @@
+using PodcastManager.Domain.Models;
 using PodcastManager.ItunesCrawler.Messages;
 using PodcastManager.ItunesCrawler.Models;
 

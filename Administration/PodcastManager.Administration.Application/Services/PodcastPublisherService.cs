@@ -17,6 +17,7 @@ public class PodcastPublisherService : IPodcastPublisherInteractor
     public async Task PublishAllFromPlaylists()
     {
         var codes = await playlistRepository.ListRelatedPodcasts();
-        await podcastRepository.PublishPodcasts(codes);
+        var total = await podcastRepository.PublishPodcasts(codes);
+        Console.WriteLine($"{DateTime.Now} - {total} podcasts was published");
     }
 }

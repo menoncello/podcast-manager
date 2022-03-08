@@ -5,7 +5,7 @@ using RabbitMQ.Client;
 
 namespace PodcastManager.ItunesCrawler.CrossCutting.Rabbit;
 
-public class RabbitListenerAdapter : BaseRabbitListenerAdapter
+public class RabbitItunesCrawlerListenerAdapter : BaseRabbitListenerAdapter
 {
     private IInteractorFactory interactorFactory = null!;
 
@@ -14,11 +14,11 @@ public class RabbitListenerAdapter : BaseRabbitListenerAdapter
 
     public override void Listen()
     {
-        ListenTo<ImportAll>(Rabbit.Configuration.ImportAllQueue,
+        ListenTo<ImportAll>(Rabbit.RabbitConfiguration.ImportAllQueue,
             _ => interactorFactory.CreateGenre().Execute());
-        ListenTo<Letter>(Rabbit.Configuration.ImportLetterQueue, 
+        ListenTo<Letter>(Rabbit.RabbitConfiguration.ImportLetterQueue, 
             interactorFactory.CreateLetter().Execute);
-        ListenTo<Page>(Rabbit.Configuration.ImportPageQueue,
+        ListenTo<Page>(Rabbit.RabbitConfiguration.ImportPageQueue,
             interactorFactory.CreatePage().Execute);
     }
 }

@@ -6,4 +6,15 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.CrossCutting.Mongo\PodcastManager.Core.CrossCutting.Mongo.csproj" />
+      <ProjectReference Include="..\PodcastManager.Administration.Application\PodcastManager.Administration.Application.csproj" />
+      <ProjectReference Include="..\PodcastManager.Administration.CrossCutting.Mongo\PodcastManager.Administration.CrossCutting.Mongo.csproj" />
+      <ProjectReference Include="..\PodcastManager.Administration.Domain\PodcastManager.Administration.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MongoDB.Driver" Version="2.14.1" />
+    </ItemGroup>
+
 </Project>

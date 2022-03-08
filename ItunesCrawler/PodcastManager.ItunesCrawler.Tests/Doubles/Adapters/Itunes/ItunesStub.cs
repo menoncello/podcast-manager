@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using PodcastManager.Domain.Models;
 using PodcastManager.ItunesCrawler.Adapters;
 using PodcastManager.ItunesCrawler.Messages;
 using PodcastManager.ItunesCrawler.Models;

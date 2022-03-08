@@ -1,6 +1,6 @@
-namespace PodcastManager.ItunesCrawler.CrossCutting.Mongo;
+namespace PodcastManager.Core.CrossCutting.Mongo;
 
-public static class Configuration
+public static class MongoConfiguration
 {
     public static readonly string MongoUrl =
         Environment.GetEnvironmentVariable("MongoUrl")

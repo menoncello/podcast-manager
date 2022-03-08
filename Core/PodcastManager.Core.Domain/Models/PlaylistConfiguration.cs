@@ -1,4 +1,4 @@
-namespace PodcastManager.Core.Domain.Models;
+namespace PodcastManager.Domain.Models;
 
 public record PlaylistConfiguration(
     string? Name,

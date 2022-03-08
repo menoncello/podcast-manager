@@ -1,7 +1,8 @@
 using MongoDB.Driver;
+using PodcastManager.Administration.CrossCutting.Mongo.Data;
 using PodcastManager.Administration.Domain.Repositories;
 using PodcastManager.Core.CrossCutting.Mongo;
-using PodcastManager.Core.Domain.Models;
+using PodcastManager.Domain.Models;
 
 namespace PodcastManager.Administration.CrossCutting.Mongo;
 
@@ -10,7 +11,7 @@ public class MongoPlaylistRepository : MongoRepository, IPlaylistRepository
     public async Task<int[]> ListRelatedPodcasts()
     {
         var collection = GetCollection<Playlist>("playlists");
-        var pipeline = PipelineDefinition<Playlist, (int _id, int[] codes)>.Create(
+        var pipeline = PipelineDefinition<Playlist, PodcastCodeResult>.Create(
             "{ $unwind: { path: \"$podcastCodes\" } }",
             "{ $group: { _id: 123, codes: { $addToSet: \"$podcastCodes\" } } }");
         

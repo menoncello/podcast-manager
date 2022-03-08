@@ -7,8 +7,8 @@ namespace PodcastManager.ItunesCrawler.CrossCutting.Rabbit;
 public class RabbitEnqueuerAdapter : BaseRabbitEnqueuerAdapter, IEnqueuerAdapter
 {
     public void EnqueueLetter(Letter letter) =>
-        BasicPublish(Configuration.ImportLetterQueue, letter);
+        BasicPublish(RabbitConfiguration.ImportLetterQueue, letter);
 
     public void EnqueuePage(Page page) =>
-        BasicPublish(Configuration.ImportPageQueue, page);
+        BasicPublish(RabbitConfiguration.ImportPageQueue, page);
 }

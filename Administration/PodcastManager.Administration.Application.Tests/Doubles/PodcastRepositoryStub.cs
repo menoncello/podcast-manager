@@ -5,8 +5,8 @@ namespace PodcastManager.Administration.Application.Tests.Doubles;
 
 public class PodcastRepositoryStub : IPodcastRepository
 {
-    public virtual Task PublishPodcasts(int[] codes)
+    public virtual Task<long> PublishPodcasts(int[] codes)
     {
-        return Task.CompletedTask;
+        return Task.FromResult(10L);
     }
 }

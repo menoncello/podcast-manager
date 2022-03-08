@@ -1,6 +1,4 @@
-using System.Collections.ObjectModel;
-
-namespace PodcastManager.Core.Domain.Models;
+namespace PodcastManager.Domain.Models;
 
 public record Playlist(
     string Id,
