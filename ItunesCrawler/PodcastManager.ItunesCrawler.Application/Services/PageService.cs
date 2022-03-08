@@ -16,6 +16,7 @@ public class PageService : IPageInteractor
         var codes = await itunes.PodcastsFromPage(page);
         var applePodcasts = await itunes.GetPodcasts(codes);
         var podcasts = applePodcasts
+            .Where(x => !string.IsNullOrEmpty(x.FeedUrl))
             .Select(Podcast.FromApple)
             .ToArray();
         await repository.Upsert(podcasts);
