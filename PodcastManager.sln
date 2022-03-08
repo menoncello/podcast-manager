@@ -58,6 +58,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.ItunesCrawler.CrossCutting.Rabbit", "ItunesCrawler\PodcastManager.ItunesCrawler.CrossCutting.Rabbit\PodcastManager.ItunesCrawler.CrossCutting.Rabbit.csproj", "{EC95FD33-E572-4508-91B9-FDD482BAB4D0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{ADD12885-E8A2-482A-A2BE-23110751E8CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.Core.CrossCutting.Rabbit", "Core\PodcastManager.Core.CrossCutting.Rabbit\PodcastManager.Core.CrossCutting.Rabbit.csproj", "{D0363743-6C9F-462D-AB06-73267AC04832}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.Core", "Core\PodcastManager.Core\PodcastManager.Core.csproj", "{69785F10-B360-4F18-9CA2-DD97EC388ECB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -152,6 +158,14 @@ Global
 		{EC95FD33-E572-4508-91B9-FDD482BAB4D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC95FD33-E572-4508-91B9-FDD482BAB4D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC95FD33-E572-4508-91B9-FDD482BAB4D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0363743-6C9F-462D-AB06-73267AC04832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0363743-6C9F-462D-AB06-73267AC04832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0363743-6C9F-462D-AB06-73267AC04832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0363743-6C9F-462D-AB06-73267AC04832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69785F10-B360-4F18-9CA2-DD97EC388ECB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69785F10-B360-4F18-9CA2-DD97EC388ECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69785F10-B360-4F18-9CA2-DD97EC388ECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69785F10-B360-4F18-9CA2-DD97EC388ECB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{65A81550-759F-47A0-9A64-1EF6B0F56571} = {DCA36531-223D-4A45-8657-40BEB86BF981}
@@ -175,5 +189,7 @@ Global
 		{BEE37C5B-3AF0-49D4-9603-E3C46985B64C} = {DCA36531-223D-4A45-8657-40BEB86BF981}
 		{72607BCC-5A74-46B5-B785-55ACC89B4A4E} = {DCA36531-223D-4A45-8657-40BEB86BF981}
 		{EC95FD33-E572-4508-91B9-FDD482BAB4D0} = {DCA36531-223D-4A45-8657-40BEB86BF981}
+		{D0363743-6C9F-462D-AB06-73267AC04832} = {ADD12885-E8A2-482A-A2BE-23110751E8CA}
+		{69785F10-B360-4F18-9CA2-DD97EC388ECB} = {ADD12885-E8A2-482A-A2BE-23110751E8CA}
 	EndGlobalSection
 EndGlobal
