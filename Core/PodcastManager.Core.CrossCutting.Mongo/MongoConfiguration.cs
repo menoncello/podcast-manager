@@ -1,3 +1,5 @@
+using MongoDB.Bson.Serialization.Conventions;
+
 namespace PodcastManager.Core.CrossCutting.Mongo;
 
 public static class MongoConfiguration
@@ -8,4 +10,16 @@ public static class MongoConfiguration
     public static readonly string MongoDatabase =
         Environment.GetEnvironmentVariable("MongoDatabase")
         ?? "podcastManager";
+
+    public static void SetConventions()
+    {
+        ConventionRegistry.Register(
+            "camelCase",
+            new ConventionPack{new CamelCaseElementNameConvention()},
+            _ => true);
+        ConventionRegistry.Register(
+            "ignoreNull",
+            new ConventionPack{new IgnoreIfNullConvention(true)},
+            _ => true);
+    }  
 }
