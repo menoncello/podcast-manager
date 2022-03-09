@@ -4,12 +4,8 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>PodcastManager</RootNamespace>
     </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\PodcastManager.ItunesCrawler.Core\PodcastManager.ItunesCrawler.Core.csproj" />
-      <ProjectReference Include="..\PodcastManager.ItunesCrawler.Domain\PodcastManager.ItunesCrawler.Domain.csproj" />
-    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Serilog" Version="2.10.0" />

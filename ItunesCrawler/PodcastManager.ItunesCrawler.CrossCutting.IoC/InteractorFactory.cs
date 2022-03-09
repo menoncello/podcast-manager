@@ -5,6 +5,7 @@ using PodcastManager.ItunesCrawler.CrossCutting.Rabbit;
 using PodcastManager.ItunesCrawler.Domain.Factories;
 using PodcastManager.ItunesCrawler.Domain.Interactors;
 using RabbitMQ.Client;
+using Serilog;
 
 namespace PodcastManager.ItunesCrawler.CrossCutting.IoC;
 
@@ -12,12 +13,13 @@ public class InteractorFactory : IInteractorFactory
 {
     private IRepositoryFactory repositoryFactory = null!;
     private IConnectionFactory connectionFactory = null!;
+    private ILogger logger = null!;
 
     public void SetRepositoryFactory(IRepositoryFactory repositoryFactory) => 
         this.repositoryFactory = repositoryFactory;
-
     public void SetConnectionFactory(IConnectionFactory connectionFactory) => 
         this.connectionFactory = connectionFactory;
+    public void SetLogger(ILogger logger) => this.logger = logger;
 
     public IGenreInteractor CreateGenre()
     {
@@ -42,6 +44,7 @@ public class InteractorFactory : IInteractorFactory
         var service = new PageService();
         service.SetItunes(CreateItunesAdapter());
         service.SetRepository(repositoryFactory.CreatePodcast());
+        service.SetLogger(logger);
         return service;
     }
     
@@ -49,6 +52,7 @@ public class InteractorFactory : IInteractorFactory
     {
         var adapter = new ItunesAdapter();
         adapter.SetFactory(new HttpClientFactory());
+        adapter.SetLogger(logger);
         return adapter;
     }
 

@@ -13,4 +13,10 @@
       <ProjectReference Include="..\PodcastManager.ItunesCrawler.CrossCutting.Mongo\PodcastManager.ItunesCrawler.CrossCutting.Mongo.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Serilog" Version="2.10.0" />
+      <PackageReference Include="Serilog.Settings.AppSettings" Version="2.2.2" />
+      <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+    </ItemGroup>
+
 </Project>

@@ -6,21 +6,9 @@ public class SpyHelper
 {
     private int timesCalled;
     
-    public void Call()
-    {
-        timesCalled++;
-        Console.WriteLine(timesCalled);
-    }
-
-    public void ShouldBeCalledOnce()
-    {
-        timesCalled.Should().Be(1);
-    }
-
-    public void ShouldBeCalled(int times)
-    {
-        timesCalled.Should().Be(times);
-    }
+    public void Call() => timesCalled++;
+    public void ShouldBeCalledOnce() => timesCalled.Should().Be(1);
+    public void ShouldBeCalled(int times) => timesCalled.Should().Be(times);
 }
 
 public class SpyHelper<T> : SpyHelper

@@ -3,22 +3,21 @@ using Newtonsoft.Json;
 using PodcastManager.Domain.Models;
 using PodcastManager.ItunesCrawler.Adapters;
 using PodcastManager.ItunesCrawler.Messages;
-using PodcastManager.ItunesCrawler.Models;
+using Serilog;
 
 namespace PodcastManager.ItunesCrawler.CrossCutting.Http;
 
 public class ItunesAdapter : IItunesAdapter
 {
     private IHttpClientFactory factory = null!;
+    private ILogger logger = null!;
 
     public const string GenresUrl = "https://podcasts.apple.com/us/genre/podcasts/id26";
     public const string PageUrl = "https://podcasts.apple.com/us/genre/podcasts-arts-books/id{0}?letter={1}&page={2}";
     public const string PodcastUrl = "https://itunes.apple.com/lookup?id={0}";
 
-    public void SetFactory(IHttpClientFactory factory)
-    {
-        this.factory = factory;
-    }
+    public void SetFactory(IHttpClientFactory factory) => this.factory = factory;
+    public void SetLogger(ILogger logger) => this.logger = logger;
 
     public async Task<AppleGenre[]> GetGenres()
     {
@@ -52,7 +51,7 @@ public class ItunesAdapter : IItunesAdapter
             .ToList();
     }
 
-    private static int GetUrlId(HtmlNode e)
+    private int GetUrlId(HtmlNode e)
     {
         try
         {
@@ -61,7 +60,7 @@ public class ItunesAdapter : IItunesAdapter
         }
         catch (Exception exception)
         {
-            Console.WriteLine(exception);
+            logger.Error(exception, "error");
             throw;
         }
     }
@@ -99,7 +98,7 @@ public class ItunesAdapter : IItunesAdapter
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                logger.Error(e, "error");
                 throw;
             }
         }
