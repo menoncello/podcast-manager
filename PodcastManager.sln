@@ -90,6 +90,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.Core.Logging
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.Core.Tests", "Core\PodcastManager.Core.Tests\PodcastManager.Core.Tests.csproj", "{C3F92D32-B9F0-43C8-A531-3A14F37ED0B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastManager.FeedUpdater.Application.Tests", "FeedUpdater\PodcastManager.FeedUpdater.Application.Tests\PodcastManager.FeedUpdater.Application.Tests.csproj", "{5F780E80-12FA-4268-A138-08FAA3D49E81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -240,6 +242,10 @@ Global
 		{C3F92D32-B9F0-43C8-A531-3A14F37ED0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3F92D32-B9F0-43C8-A531-3A14F37ED0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3F92D32-B9F0-43C8-A531-3A14F37ED0B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F780E80-12FA-4268-A138-08FAA3D49E81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F780E80-12FA-4268-A138-08FAA3D49E81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F780E80-12FA-4268-A138-08FAA3D49E81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F780E80-12FA-4268-A138-08FAA3D49E81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{65A81550-759F-47A0-9A64-1EF6B0F56571} = {DCA36531-223D-4A45-8657-40BEB86BF981}
@@ -277,5 +283,6 @@ Global
 		{9915CFFE-699C-4817-807C-53D9E277DF18} = {ADD12885-E8A2-482A-A2BE-23110751E8CA}
 		{E7AA357A-194D-4DB6-BC64-BB4034BE00D1} = {ADD12885-E8A2-482A-A2BE-23110751E8CA}
 		{C3F92D32-B9F0-43C8-A531-3A14F37ED0B9} = {ADD12885-E8A2-482A-A2BE-23110751E8CA}
+		{5F780E80-12FA-4268-A138-08FAA3D49E81} = {7F38B114-446C-4A38-A25A-F5FA0B4610F8}
 	EndGlobalSection
 EndGlobal
