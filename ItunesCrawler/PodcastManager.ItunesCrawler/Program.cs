@@ -1,4 +1,5 @@
-﻿using PodcastManager.CrossCutting.Rabbit;
+﻿using PodcastManager.Core.CrossCutting.Mongo;
+using PodcastManager.CrossCutting.Rabbit;
 using PodcastManager.ItunesCrawler.CrossCutting.IoC;
 using PodcastManager.ItunesCrawler.CrossCutting.Rabbit;
 using RabbitMQ.Client;
@@ -14,7 +15,7 @@ Log.Logger.Information("iTunes Crawler service starting");
 
 var closing = new AutoResetEvent(false);
 
-
+MongoConfiguration.SetConventions();
 var repositoryFactory = new RepositoryFactory();
 var connectionFactory = new ConnectionFactory { HostName = BaseRabbitConfiguration.Host };
 

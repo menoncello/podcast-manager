@@ -1,5 +1,6 @@
 ﻿using PodcastManager.Administration.CrossCutting.IoC;
 using PodcastManager.Administration.CrossCutting.Rabbit;
+using PodcastManager.Core.CrossCutting.Mongo;
 using PodcastManager.CrossCutting.Rabbit;
 using RabbitMQ.Client;
 using Serilog;
@@ -15,6 +16,7 @@ Log.Logger.Information("iTunes Crawler service starting");
 
 var closing = new AutoResetEvent(false);
 
+MongoConfiguration.SetConventions();
 var repositoryFactory = new RepositoryFactory();
 var connectionFactory = new ConnectionFactory { HostName = BaseRabbitConfiguration.Host };
 
