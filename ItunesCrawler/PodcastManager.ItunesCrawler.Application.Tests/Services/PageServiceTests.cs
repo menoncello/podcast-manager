@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
+using PodcastManager.Doubles;
 using PodcastManager.ItunesCrawler.Domain.Interactors;
 using PodcastManager.ItunesCrawler.Doubles.Adapters.Itunes;
 using PodcastManager.ItunesCrawler.Doubles.Repositories;
@@ -24,6 +25,7 @@ public class PageServiceTests
         service = new PageService();
         service.SetItunes(itunesSpy);
         service.SetRepository(repositorySpy);
+        service.SetLogger(new LoggerDummy());
     }
 
     [SetUp]

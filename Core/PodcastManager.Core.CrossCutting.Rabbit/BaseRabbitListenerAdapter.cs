@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using PodcastManager.Adapters;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Serilog;
 
 namespace PodcastManager.CrossCutting.Rabbit;
 
@@ -10,12 +11,14 @@ public abstract class BaseRabbitListenerAdapter : IListenerAdapter, IDisposable
 {
     private IConnection connection = null!;
     private IModel channel = null!;
+    private ILogger logger = null!;
 
     public void SetConnectionFactory(IConnectionFactory connectionFactory)
     {
         connection = connectionFactory.CreateConnection();
         channel = connection.CreateModel();
     }
+    public void SetLogger(ILogger logger) => this.logger = logger;
 
     public abstract void Listen();
 
@@ -28,7 +31,7 @@ public abstract class BaseRabbitListenerAdapter : IListenerAdapter, IDisposable
     
     protected void ListenTo<T>(string queue, Func<T, Task> action)
     {
-        Console.WriteLine($"{DateTime.Now} - listening to: {queue}");
+        logger.Information("listening to: {Queue}", queue);
         ConfigureChannel();
         channel.BasicConsume(queue, false, ConfigureConsumer());
 
@@ -41,7 +44,7 @@ public abstract class BaseRabbitListenerAdapter : IListenerAdapter, IDisposable
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                logger.Error(e, "Error: '{Error}' processing message {Queue}", e.Message, queue);
                 channel.BasicNack(basicDeliverEventArgs.DeliveryTag, false, false);
             }
         }
@@ -52,7 +55,7 @@ public abstract class BaseRabbitListenerAdapter : IListenerAdapter, IDisposable
             
             var message = JsonConvert.DeserializeObject<T>(json);
             
-            Console.WriteLine($"{DateTime.Now} - Message Received: {message}");
+            logger.Debug("Message Received: {Message}", message);
             await action(message!);
         }
         void ConfigureChannel()

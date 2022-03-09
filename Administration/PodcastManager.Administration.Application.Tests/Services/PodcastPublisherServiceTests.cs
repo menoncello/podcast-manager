@@ -5,6 +5,7 @@ using NUnit.Framework;
 using PodcastManager.Administration.Application.Services;
 using PodcastManager.Administration.Application.Tests.Doubles;
 using PodcastManager.Administration.Domain.Interactors;
+using PodcastManager.Doubles;
 
 namespace PodcastManager.Administration.Application.Tests.Services;
 
@@ -22,6 +23,7 @@ public class PodcastPublisherServiceTests
         var currentService = new PodcastPublisherService();
         currentService.SetPlaylistRepository(playlistRepositorySpy);
         currentService.SetPodcastRepository(podcastRepositorySpy);
+        currentService.SetLogger(new LoggerDummy());
         service = currentService;
     }
 

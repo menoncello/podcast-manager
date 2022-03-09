@@ -3,6 +3,7 @@ using PodcastManager.ItunesCrawler.Domain.Interactors;
 using PodcastManager.ItunesCrawler.Domain.Repositories;
 using PodcastManager.ItunesCrawler.Messages;
 using PodcastManager.ItunesCrawler.Models;
+using Serilog;
 
 namespace PodcastManager.ItunesCrawler.Application.Services;
 
@@ -10,6 +11,7 @@ public class PageService : IPageInteractor
 {
     private IItunesAdapter itunes = null!;
     private IPodcastRepository repository = null!;
+    private ILogger logger = null!;
 
     public async Task Execute(Page page)
     {
@@ -20,12 +22,13 @@ public class PageService : IPageInteractor
             .Select(Podcast.FromApple)
             .ToArray();
         var (total, newPodcasts, updated) = await repository.Upsert(podcasts);
-        
-        Console.WriteLine($"{DateTime.Now} - {page.Letter.Genre} '{page.Letter.Char}' - " +
-                          $" {page.Number} - Total podcasts: {total} - " +
-                          $"new: {newPodcasts} - updated: {updated}");
+
+        logger.Information("{Genre} - {Char} - {Page} - Total podcasts: {Total} - " +
+                           "new: {NewPodcasts} - updated: {UpdatedPodcasts}",
+            page.Letter.Genre, page.Letter.Char, page.Number, total, newPodcasts, updated);
     }
 
     public void SetItunes(IItunesAdapter itunes) => this.itunes = itunes;
     public void SetRepository(IPodcastRepository repository) => this.repository = repository;
+    public void SetLogger(ILogger logger) => this.logger = logger;
 }

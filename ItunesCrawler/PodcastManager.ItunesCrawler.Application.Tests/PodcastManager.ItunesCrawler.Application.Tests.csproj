@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.Tests\PodcastManager.Core.Tests.csproj" />
       <ProjectReference Include="..\PodcastManager.ItunesCrawler.Application\PodcastManager.ItunesCrawler.Application.csproj" />
       <ProjectReference Include="..\PodcastManager.ItunesCrawler.Core\PodcastManager.ItunesCrawler.Core.csproj" />
       <ProjectReference Include="..\PodcastManager.ItunesCrawler.Tests\PodcastManager.ItunesCrawler.Tests.csproj" />
