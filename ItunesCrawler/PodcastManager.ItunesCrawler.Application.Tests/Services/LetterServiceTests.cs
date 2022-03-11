@@ -11,16 +11,16 @@ namespace PodcastManager.ItunesCrawler.Application.Services;
 public class LetterServiceTests
 {
     private LetterService service = null!;
-    private EnqueuerSpy enqueuerSpy = null!;
+    private ItunesCrawlerEnqueuerSpy itunesCrawlerEnqueuerSpy = null!;
     private ItunesSpy itunesSpy = null!;
 
     private void CreateService()
     {
-        enqueuerSpy = new EnqueuerSpy();
+        itunesCrawlerEnqueuerSpy = new ItunesCrawlerEnqueuerSpy();
         itunesSpy = new ItunesSpy();
         
         service = new LetterService();
-        service.SetEnqueuer(enqueuerSpy);
+        service.SetEnqueuer(itunesCrawlerEnqueuerSpy);
         service.SetItunes(itunesSpy);
     }
 
@@ -40,8 +40,8 @@ public class LetterServiceTests
         
         itunesSpy.GetTotalPagesSpy.ShouldBeCalledOnce();
         itunesSpy.GetTotalPagesSpy.LastParameter.Should().Be(letter);
-        enqueuerSpy.EnqueuePageSpy.ShouldBeCalled(4);
-        enqueuerSpy.EnqueuePageSpy.Parameters.Should().BeEquivalentTo(new[]
+        itunesCrawlerEnqueuerSpy.EnqueuePageSpy.ShouldBeCalled(4);
+        itunesCrawlerEnqueuerSpy.EnqueuePageSpy.Parameters.Should().BeEquivalentTo(new[]
         {
             new Page(letter, 1),
             new Page(letter, 2),

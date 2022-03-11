@@ -13,7 +13,7 @@ public class GenreServiceTests
 {
     private GenreService service = null!;
     private ItunesSpy itunesSpy = null!;
-    private EnqueuerSpy enqueuerSpy = null!;
+    private ItunesCrawlerEnqueuerSpy itunesCrawlerEnqueuerSpy = null!;
 
     [SetUp]
     public void SetUp() => CreateService();
@@ -21,11 +21,11 @@ public class GenreServiceTests
     private void CreateService()
     {
         itunesSpy = new ItunesSpy();
-        enqueuerSpy = new EnqueuerSpy();
+        itunesCrawlerEnqueuerSpy = new ItunesCrawlerEnqueuerSpy();
         
         service = new GenreService();
         service.SetItunes(itunesSpy);
-        service.SetEnqueuer(enqueuerSpy);
+        service.SetEnqueuer(itunesCrawlerEnqueuerSpy);
     }
 
     [Test]
@@ -39,10 +39,10 @@ public class GenreServiceTests
     {
         await service.Execute();
         itunesSpy.ListGenresSpy.ShouldBeCalledOnce();
-        enqueuerSpy.EnqueueLetterSpy.ShouldBeCalled(81);
-        enqueuerSpy.EnqueueLetterSpy.Parameters.First()
+        itunesCrawlerEnqueuerSpy.EnqueueLetterSpy.ShouldBeCalled(81);
+        itunesCrawlerEnqueuerSpy.EnqueueLetterSpy.Parameters.First()
             .Should().Be(new Letter(new AppleGenre(1, "Genre 1"), 'A'));
-        enqueuerSpy.EnqueueLetterSpy.LastParameter
+        itunesCrawlerEnqueuerSpy.EnqueueLetterSpy.LastParameter
             .Should().Be(new Letter(new AppleGenre(3, "Genre 3"), '#'));
     }
 }
