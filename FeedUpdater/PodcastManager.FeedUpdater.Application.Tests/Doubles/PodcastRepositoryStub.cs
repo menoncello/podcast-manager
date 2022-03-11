@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using PodcastManager.FeedUpdater.Domain.Repositories;
 using PodcastManager.FeedUpdater.Messages;
 
-namespace PodcastManager.FeedUpdater.Application.Tests.Services;
+namespace PodcastManager.FeedUpdater.Application.Tests.Doubles;
 
 public class PodcastRepositoryStub : IPodcastRepository
 {

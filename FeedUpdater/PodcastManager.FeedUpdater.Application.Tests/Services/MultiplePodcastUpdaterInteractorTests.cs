@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using PodcastManager.FeedUpdater.Application.Services;
+using PodcastManager.FeedUpdater.Application.Tests.Doubles;
 using PodcastManager.FeedUpdater.Domain.Interactors;
 
 namespace PodcastManager.FeedUpdater.Application.Tests.Services;

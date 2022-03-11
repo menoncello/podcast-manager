@@ -3,7 +3,7 @@ using PodcastManager.FeedUpdater.Adapters;
 using PodcastManager.FeedUpdater.Messages;
 using PodcastManager.Tests.Spies;
 
-namespace PodcastManager.FeedUpdater.Application.Tests.Services;
+namespace PodcastManager.FeedUpdater.Application.Tests.Doubles;
 
 public class UpdaterEnqueuerSpy : IUpdaterEnqueuerAdapter
 {
