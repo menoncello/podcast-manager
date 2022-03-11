@@ -7,11 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.CrossCutting.Rabbit\PodcastManager.Core.CrossCutting.Rabbit.csproj" />
+      <ProjectReference Include="..\PodcastManager.FeedUpdater.Core\PodcastManager.FeedUpdater.Core.csproj" />
       <ProjectReference Include="..\PodcastManager.FeedUpdater.Domain\PodcastManager.FeedUpdater.Domain.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Serilog" Version="2.10.0" />
     </ItemGroup>
 
 </Project>

@@ -4,15 +4,19 @@ using PodcastManager.Core.CrossCutting.Mongo;
 using PodcastManager.Domain.Models;
 using PodcastManager.FeedUpdater.Domain.Repositories;
 using PodcastManager.FeedUpdater.Messages;
+using Serilog;
 
 namespace PodcastManager.FeedUpdater.CrossCutting.Mongo;
 
 public class MongoPodcastRepository : MongoRepository, IPodcastRepository
 {
     private IDateTimeAdapter dateTime = null!;
+    private ILogger logger = null!;
+    
     private readonly ExpressionFilterDefinition<FullPodcast> isPublished = new(x => x.IsPublished);
 
     public void SetDateTime(IDateTimeAdapter dateTime) => this.dateTime = dateTime;
+    public void SetLogger(ILogger logger) => this.logger = logger;
 
     public Task<IReadOnlyCollection<UpdatePodcast>> ListPodcastToUpdate() =>
         ListPodcastsToUpdate(GetNeedsUpdate(dateTime.Now()));
@@ -25,14 +29,19 @@ public class MongoPodcastRepository : MongoRepository, IPodcastRepository
     {
         var collection = GetCollection<FullPodcast>("podcasts");
         var cursor = await collection
-            .Find(Builders<FullPodcast>.Filter.And(filters), new FindOptions {BatchSize = 100})
+            .Find(Builders<FullPodcast>.Filter.And(filters), new FindOptions {BatchSize = 100000})
             .Project(x => new UpdatePodcast(x.Code, x.Title, x.Feed))
             .ToCursorAsync();
 
-        var result = new List<UpdatePodcast>(cursor.Current);
+        var result = new List<UpdatePodcast>();
+        var page = 1;
 
         while (await cursor.MoveNextAsync())
+        {
             result.AddRange(cursor.Current);
+            logger.Debug("Required page {Page}", page);
+            page++;
+        }
 
         return result;
     }

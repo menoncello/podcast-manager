@@ -4,6 +4,6 @@ namespace PodcastManager.FeedUpdater.Domain.Factories;
 
 public interface IRepositoryFactory
 {
-    Task<IEpisodeRepository> CreateEpisode();
-    Task<IPodcastRepository> CreatePodcast();
+    IEpisodeRepository CreateEpisode();
+    IPodcastRepository CreatePodcast();
 }

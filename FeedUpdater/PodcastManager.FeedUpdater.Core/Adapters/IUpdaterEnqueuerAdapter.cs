@@ -7,4 +7,5 @@ public interface IUpdaterEnqueuerAdapter
     void EnqueueUpdateAllPodcasts();
     void EnqueueUpdateAllPublishedPodcasts();
     void EnqueueUpdatePodcast(UpdatePodcast podcast);
+    void EnqueueUpdatePodcasts(IReadOnlyCollection<UpdatePodcast> podcasts);
 }

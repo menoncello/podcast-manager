@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
+using PodcastManager.Doubles;
 using PodcastManager.FeedUpdater.Application.Services;
 using PodcastManager.FeedUpdater.Application.Tests.Doubles;
 using PodcastManager.FeedUpdater.Domain.Interactors;
@@ -22,6 +23,7 @@ public class MultiplePodcastUpdaterInteractorTests
         var newService = new MultiplePodcastUpdaterService();
         newService.SetRepository(podcastRepositorySpy);
         newService.SetEnqueuer(updaterEnqueuerSpy);
+        newService.SetLogger(new LoggerDummy());
         service = newService;
     }
 
@@ -42,8 +44,8 @@ public class MultiplePodcastUpdaterInteractorTests
     {
         await service.Execute();
         podcastRepositorySpy.ListPodcastToUpdateSpy.ShouldBeCalledOnce();
-        updaterEnqueuerSpy.EnqueueUpdatePodcastSpy.ShouldBeCalled(5);
-        updaterEnqueuerSpy.EnqueueUpdatePodcastSpy.Parameters
+        updaterEnqueuerSpy.EnqueueUpdatePodcastsSpy.ShouldBeCalledOnce();
+        updaterEnqueuerSpy.EnqueueUpdatePodcastsSpy.LastParameter
             .Should().BeEquivalentTo(podcastRepositorySpy.Podcasts);
     }
 
@@ -52,8 +54,8 @@ public class MultiplePodcastUpdaterInteractorTests
     {
         await service.ExecutePublished();
         podcastRepositorySpy.ListPublishedPodcastToUpdateSpy.ShouldBeCalledOnce();
-        updaterEnqueuerSpy.EnqueueUpdatePodcastSpy.ShouldBeCalled(3);
-        updaterEnqueuerSpy.EnqueueUpdatePodcastSpy.Parameters
+        updaterEnqueuerSpy.EnqueueUpdatePodcastsSpy.ShouldBeCalledOnce();
+        updaterEnqueuerSpy.EnqueueUpdatePodcastsSpy.LastParameter
             .Should().BeEquivalentTo(podcastRepositorySpy.Podcasts.Take(3));
     }
 }

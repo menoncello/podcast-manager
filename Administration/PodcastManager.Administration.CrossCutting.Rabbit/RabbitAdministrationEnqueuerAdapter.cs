@@ -6,5 +6,5 @@ namespace PodcastManager.Administration.CrossCutting.Rabbit;
 public class RabbitAdministrationEnqueuerAdapter : BaseRabbitEnqueuerAdapter, IAdministrationEnqueuerAdapter
 {
     public void EnqueuePublishPodcastFromPlaylists() =>
-        BasicPublish(RabbitConfiguration.PublishAllFromPlaylistQueue, new PublishAllFromPlaylists());
+        Publish(RabbitConfiguration.PublishAllFromPlaylistQueue, new PublishAllFromPlaylists());
 }

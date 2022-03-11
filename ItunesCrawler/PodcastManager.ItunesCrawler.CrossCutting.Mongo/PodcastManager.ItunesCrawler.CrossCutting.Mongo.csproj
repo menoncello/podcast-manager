@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Core\PodcastManager.Core.CrossCutting.Mongo\PodcastManager.Core.CrossCutting.Mongo.csproj" />
+      <ProjectReference Include="..\..\FeedUpdater\PodcastManager.FeedUpdater.Domain\PodcastManager.FeedUpdater.Domain.csproj" />
       <ProjectReference Include="..\PodcastManager.ItunesCrawler.Domain\PodcastManager.ItunesCrawler.Domain.csproj" />
     </ItemGroup>
 

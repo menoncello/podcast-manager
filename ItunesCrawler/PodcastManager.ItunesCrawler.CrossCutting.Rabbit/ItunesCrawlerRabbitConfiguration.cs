@@ -1,6 +1,7 @@
 namespace PodcastManager.ItunesCrawler.CrossCutting.Rabbit;
 
-public class RabbitConfiguration : PodcastManager.CrossCutting.Rabbit.BaseRabbitConfiguration
+// ReSharper disable once ClassNeverInstantiated.Global
+public class ItunesCrawlerRabbitConfiguration : PodcastManager.CrossCutting.Rabbit.BaseRabbitConfiguration
 {
     public static string ImportAllQueue { get; } =
         Environment.GetEnvironmentVariable("ImportAllQueue")

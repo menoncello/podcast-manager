@@ -16,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.Tests\PodcastManager.Core.Tests.csproj" />
       <ProjectReference Include="..\..\Tests\PodcastManager.Tests.Core\PodcastManager.Tests.Core.csproj" />
       <ProjectReference Include="..\PodcastManager.FeedUpdater.Application\PodcastManager.FeedUpdater.Application.csproj" />
       <ProjectReference Include="..\PodcastManager.FeedUpdater.Domain\PodcastManager.FeedUpdater.Domain.csproj" />
