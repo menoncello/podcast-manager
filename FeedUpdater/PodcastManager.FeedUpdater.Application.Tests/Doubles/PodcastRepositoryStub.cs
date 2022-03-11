@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PodcastManager.FeedUpdater.Domain.Repositories;
@@ -15,13 +16,13 @@ public class PodcastRepositoryStub : IPodcastRepository
         new(5, "Podcast 5", "https://feedpodcast5.com/rss")
     };
     
-    public virtual Task<UpdatePodcast[]> ListPodcastToUpdate()
+    public virtual Task<IReadOnlyCollection<UpdatePodcast>> ListPodcastToUpdate()
     {
-        return Task.FromResult(Podcasts);
+        return Task.FromResult(Podcasts as IReadOnlyCollection<UpdatePodcast>);
     }
 
-    public virtual Task<UpdatePodcast[]> ListPublishedPodcastToUpdate()
+    public virtual Task<IReadOnlyCollection<UpdatePodcast>> ListPublishedPodcastToUpdate()
     {
-        return Task.FromResult(Podcasts.Take(3).ToArray());
+        return Task.FromResult(Podcasts.Take(3).ToList() as IReadOnlyCollection<UpdatePodcast>);
     }
 }
