@@ -1,3 +1,3 @@
 namespace PodcastManager.Domain.Models;
 
-public record PodcastStatus;
+public record PodcastStatus(DateTime NextUpdate);

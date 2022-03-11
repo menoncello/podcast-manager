@@ -19,7 +19,7 @@ public class MultiplePodcastUpdaterService : IMultiplePodcastUpdaterInteractor
     public async Task ExecutePublished() =>
         EnqueuePodcasts(await repository.ListPublishedPodcastToUpdate());
 
-    private void EnqueuePodcasts(UpdatePodcast[] podcasts)
+    private void EnqueuePodcasts(IEnumerable<UpdatePodcast> podcasts)
     {
         foreach (var podcast in podcasts) 
             enqueuer.EnqueueUpdatePodcast(podcast);

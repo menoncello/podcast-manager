@@ -4,6 +4,6 @@ namespace PodcastManager.FeedUpdater.Domain.Repositories;
 
 public interface IPodcastRepository
 {
-    Task<UpdatePodcast[]> ListPodcastToUpdate();
-    Task<UpdatePodcast[]> ListPublishedPodcastToUpdate();
+    Task<IReadOnlyCollection<UpdatePodcast>> ListPodcastToUpdate();
+    Task<IReadOnlyCollection<UpdatePodcast>> ListPublishedPodcastToUpdate();
 }
