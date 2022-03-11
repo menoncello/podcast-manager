@@ -56,9 +56,9 @@ public class InteractorFactory : IInteractorFactory
         return adapter;
     }
 
-    private IEnqueuerAdapter CreateEnqueuerAdapter()
+    private IItunesCrawlerEnqueuerAdapter CreateEnqueuerAdapter()
     {
-        var adapter = new RabbitEnqueuerAdapter();
+        var adapter = new RabbitItunesCrawlerEnqueuerAdapter();
         adapter.SetConnection(connectionFactory.CreateConnection());
         return adapter;
     }

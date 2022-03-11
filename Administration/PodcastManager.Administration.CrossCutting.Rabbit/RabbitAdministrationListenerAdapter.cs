@@ -1,5 +1,5 @@
-using PodcastManager.Administration.Core.Messages;
 using PodcastManager.Administration.Domain.Factories;
+using PodcastManager.Administration.Messages;
 using PodcastManager.CrossCutting.Rabbit;
 
 namespace PodcastManager.Administration.CrossCutting.Rabbit;
@@ -13,7 +13,7 @@ public class RabbitAdministrationListenerAdapter : BaseRabbitListenerAdapter
 
     public override void Listen()
     {
-        ListenTo<PublishAllFromPlaylists>(RabbitConfiguration.ImportAllQueue,
+        ListenTo<PublishAllFromPlaylists>(RabbitConfiguration.PublishAllFromPlaylistQueue,
             _ => interactorFactory.CreatePodcastPublisher().PublishAllFromPlaylists());
     }
 }

@@ -1,3 +1,3 @@
-namespace PodcastManager.Administration.Core.Messages;
+namespace PodcastManager.Administration.Messages;
 
 public record PublishAllFromPlaylists;
