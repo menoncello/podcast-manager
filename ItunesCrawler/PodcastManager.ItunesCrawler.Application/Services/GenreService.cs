@@ -7,7 +7,7 @@ namespace PodcastManager.ItunesCrawler.Application.Services;
 public class GenreService : IGenreInteractor
 {
     private IItunesAdapter itunes = null!;
-    private IEnqueuerAdapter enqueuer = null!;
+    private IItunesCrawlerEnqueuerAdapter itunesCrawlerEnqueuer = null!;
 
     private const string Letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#";
 
@@ -18,7 +18,7 @@ public class GenreService : IGenreInteractor
         var letters = genres
             .SelectMany(_ => Letters, (genre, letter) => new Letter(genre, letter));
 
-        foreach (var letter in letters) enqueuer.EnqueueLetter(letter);
+        foreach (var letter in letters) itunesCrawlerEnqueuer.EnqueueLetter(letter);
     }
 
     public void SetItunes(IItunesAdapter itunes)
@@ -26,8 +26,8 @@ public class GenreService : IGenreInteractor
         this.itunes = itunes;
     }
 
-    public void SetEnqueuer(IEnqueuerAdapter enqueuer)
+    public void SetEnqueuer(IItunesCrawlerEnqueuerAdapter itunesCrawlerEnqueuer)
     {
-        this.enqueuer = enqueuer;
+        this.itunesCrawlerEnqueuer = itunesCrawlerEnqueuer;
     }
 }
