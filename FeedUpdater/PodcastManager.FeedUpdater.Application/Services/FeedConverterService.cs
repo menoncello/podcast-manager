@@ -78,9 +78,10 @@ public class FeedConverterService : IFeedConverterInteractor
         if (string.IsNullOrWhiteSpace(text))
             throw new ArgumentNullException(nameof(text));
 
-        return DateTime
-            .Parse(text)
-            .ToUniversalTime();
+        if (DateTime.TryParse(text, out var date))
+            return date.ToUniversalTime();
+
+        throw new DateTimeBadFormattedException(text);
     }
 
     private static string ConvertToCategory(XElement element) =>
@@ -161,6 +162,16 @@ public class FeedConverterService : IFeedConverterInteractor
     {
         {"itunes", "http://www.itunes.com/dtds/podcast-1.0.dtd"}
     };
+}
+
+public class DateTimeBadFormattedException : Exception
+{
+    public string BadFormattedDateTime { get; }
+
+    public DateTimeBadFormattedException(string badFormattedDateTime)
+    {
+        BadFormattedDateTime = badFormattedDateTime;
+    }
 }
 
 public class HrefAttributeNotFoundInImageException : Exception

@@ -132,6 +132,13 @@ public class FeedConverterServiceTests
         var result = service.ConvertToDate(date);
         result.ToString("yyyy-MM-ddTHH:mm:ss").Should().Be(expected);
     }
+
+    [Test]
+    public void ConvertToDate_WithABadFormattedDateTimeThrowsError()
+    {
+        Action act = () => _ = service.ConvertToDate("AAA");
+        act.Should().Throw<DateTimeBadFormattedException>();
+    }
     
 
 }
