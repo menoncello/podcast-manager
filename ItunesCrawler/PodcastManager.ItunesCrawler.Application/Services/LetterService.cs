@@ -13,8 +13,10 @@ public class LetterService : ILetterInteractor
     public async Task Execute(Letter letter)
     {
         var totalPages = await itunes.GetTotalPages(letter);
-        for (short i = 1; i < totalPages + 1; i++)
-            itunesCrawlerEnqueuer.EnqueuePage(new Page(letter, i));
+        var pages = new List<Page>(totalPages);
+        for (var i = 1; i < totalPages + 1; i++)
+            pages.Add(new Page(letter, i));
+        itunesCrawlerEnqueuer.EnqueuePage(pages);
     }
 
     public void SetEnqueuer(IItunesCrawlerEnqueuerAdapter itunesCrawlerEnqueuer)

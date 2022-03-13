@@ -6,7 +6,8 @@ namespace PodcastManager.ItunesCrawler.CrossCutting.Mongo.Data;
 
 [BsonIgnoreExtraElements]
 public record PodcastData(
-    ItunesPodcast Imported,
+    
+    ImportedPodcast Imported,
     int Code,
     string Title,
     string Feed,
@@ -14,6 +15,7 @@ public record PodcastData(
     bool IsPublished = false)
 {
     public static PodcastData FromPodcast(Podcast podcast) =>
-        new PodcastData(podcast.Imported, podcast.Code, podcast.Title,
+        new(new ImportedPodcast(podcast.Imported), podcast.Code, podcast.Title,
             podcast.Feed, podcast.Image, podcast.IsPublished);
 }
+

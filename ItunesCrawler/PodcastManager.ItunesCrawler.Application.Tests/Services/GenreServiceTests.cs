@@ -39,10 +39,10 @@ public class GenreServiceTests
     {
         await service.Execute();
         itunesSpy.ListGenresSpy.ShouldBeCalledOnce();
-        itunesCrawlerEnqueuerSpy.EnqueueLetterSpy.ShouldBeCalled(81);
-        itunesCrawlerEnqueuerSpy.EnqueueLetterSpy.Parameters.First()
+        itunesCrawlerEnqueuerSpy.EnqueueLetterSpy.ShouldBeCalled(1);
+        itunesCrawlerEnqueuerSpy.EnqueueLetterSpy.LastParameter.First()
             .Should().Be(new Letter(new AppleGenre(1, "Genre 1"), 'A'));
-        itunesCrawlerEnqueuerSpy.EnqueueLetterSpy.LastParameter
+        itunesCrawlerEnqueuerSpy.EnqueueLetterSpy.LastParameter.Last()
             .Should().Be(new Letter(new AppleGenre(3, "Genre 3"), '#'));
     }
 }

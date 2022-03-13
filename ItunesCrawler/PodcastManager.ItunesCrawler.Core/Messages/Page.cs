@@ -1,6 +1,6 @@
 namespace PodcastManager.ItunesCrawler.Messages;
 
-public record Page(Letter Letter, short Number)
+public record Page(Letter Letter, int Number)
 {
     public override string ToString()
     {

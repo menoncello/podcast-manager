@@ -18,7 +18,7 @@ public class GenreService : IGenreInteractor
         var letters = genres
             .SelectMany(_ => Letters, (genre, letter) => new Letter(genre, letter));
 
-        foreach (var letter in letters) itunesCrawlerEnqueuer.EnqueueLetter(letter);
+        itunesCrawlerEnqueuer.EnqueueLetter(letters);
     }
 
     public void SetItunes(IItunesAdapter itunes)

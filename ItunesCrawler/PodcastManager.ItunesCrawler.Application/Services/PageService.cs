@@ -23,6 +23,8 @@ public class PageService : IPageInteractor
             .ToArray();
         var (total, newPodcasts, updated) = await repository.Upsert(podcasts);
 
+        if (newPodcasts + updated == 0) return;
+        
         logger.Information("{Genre} - {Char} - {Page} - Total podcasts: {Total} - " +
                            "new: {NewPodcasts} - updated: {UpdatedPodcasts}",
             page.Letter.Genre, page.Letter.Char, page.Number, total, newPodcasts, updated);

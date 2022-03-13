@@ -40,13 +40,14 @@ public class LetterServiceTests
         
         itunesSpy.GetTotalPagesSpy.ShouldBeCalledOnce();
         itunesSpy.GetTotalPagesSpy.LastParameter.Should().Be(letter);
-        itunesCrawlerEnqueuerSpy.EnqueuePageSpy.ShouldBeCalled(4);
-        itunesCrawlerEnqueuerSpy.EnqueuePageSpy.Parameters.Should().BeEquivalentTo(new[]
-        {
-            new Page(letter, 1),
-            new Page(letter, 2),
-            new Page(letter, 3),
-            new Page(letter, 4),
-        });
+        itunesCrawlerEnqueuerSpy.EnqueuePageSpy.ShouldBeCalled(1);
+        itunesCrawlerEnqueuerSpy.EnqueuePageSpy.LastParameter
+            .Should().BeEquivalentTo(new[]
+            {
+                new Page(letter, 1),
+                new Page(letter, 2),
+                new Page(letter, 3),
+                new Page(letter, 4),
+            });
     }
 }
