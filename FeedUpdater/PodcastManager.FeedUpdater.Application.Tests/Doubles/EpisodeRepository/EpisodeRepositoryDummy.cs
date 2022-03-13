@@ -6,8 +6,8 @@ namespace PodcastManager.FeedUpdater.Application.Tests.Doubles.EpisodeRepository
 
 public class EpisodeRepositoryDummy : IEpisodeRepository
 {
-    public virtual Task<(int, int)> Save(int code, Item[] feedItems) =>
-        Task.FromResult((0, 0));
+    public virtual Task<(long, long)> Save(int code, Item[] feedItems) =>
+        Task.FromResult((0L, 0L));
 
-    public virtual Task<int> EpisodeCount(int code) => Task.FromResult(0);
+    public virtual Task<long> EpisodeCount(int code) => Task.FromResult(0L);
 }

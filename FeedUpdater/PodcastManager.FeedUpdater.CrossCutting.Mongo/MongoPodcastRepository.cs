@@ -6,6 +6,8 @@ using PodcastManager.FeedUpdater.Domain.Models;
 using PodcastManager.FeedUpdater.Domain.Repositories;
 using PodcastManager.FeedUpdater.Messages;
 using Serilog;
+using Image = PodcastManager.Domain.Models.Image;
+using Owner = PodcastManager.Domain.Models.Owner;
 
 namespace PodcastManager.FeedUpdater.CrossCutting.Mongo;
 
@@ -25,14 +27,42 @@ public class MongoPodcastRepository : MongoRepository, IPodcastRepository
     public Task<IReadOnlyCollection<UpdatePodcast>> ListPublishedPodcastToUpdate() =>
         ListPodcastsToUpdate(isPublished, GetNeedsUpdate(dateTime.Now()));
 
-    public Task SaveFeedData(int code, Feed feed)
+    public async Task SaveFeedData(int code, Feed feed)
     {
-        throw new NotImplementedException();
+        var collection = GetCollection<FullPodcast>("podcasts");
+        var filter = Builders<FullPodcast>.Filter.Eq(x => x.Code, code);
+        var update = Builders<FullPodcast>.Update
+                .Set(x => x.Imported.Feed!.Title, feed.Title)
+                .SetOrUnset(x => x.Imported.Feed!.Description!, feed.Description)
+                .SetOrUnset(x => x.Imported.Feed!.Language!, feed.Language)
+                .SetOrUnset(x => x.Imported.Feed!.Link!, feed.Link)
+                .SetOrUnset(x => x.Imported.Feed!.Subtitle!, feed.Subtitle)
+                .SetOrUnset(x => x.Imported.Feed!.Summary!, feed.Summary)
+                .SetOrUnset(x => x.Imported.Feed!.Image!,
+                    feed.Image == null ? null : new Image(feed.Image.Href))
+                .SetOrUnset(x => x.Imported.Feed!.Owner!, 
+                    feed.Owner == null ? null : new Owner(feed.Owner.Name, feed.Owner.Email));
+        await collection.UpdateOneAsync(filter, update);
     }
 
-    public Task UpdateStatus(int code, PodcastStatus status, string errorMessage = "")
+    public async Task UpdateStatus(int code, PodcastStatus status, string errorMessage = "")
     {
-        throw new NotImplementedException();
+        var collection = GetCollection<FullPodcast>("podcasts");
+        var filter = Builders<FullPodcast>.Filter.Eq(x => x.Code, code);
+        var update = Builders<FullPodcast>.Update
+            .Set(x => x.Status!.LastTimeUpdated, status.LastTimeUpdated)
+            .Set(x => x.Status!.NextUpdate, status.NextUpdate);
+
+        if (string.IsNullOrWhiteSpace(errorMessage))
+            update = update
+                .Set(x => x.Status!.ErrorCount, 0)
+                .Unset(x => x.Status!.Errors);
+        else
+            update = update
+                .Inc(x => x.Status!.ErrorCount, 1)
+                .AddToSet(x => x.Status!.Errors, errorMessage);
+
+        await collection.UpdateOneAsync(filter, update);
     }
 
     private async Task<IReadOnlyCollection<UpdatePodcast>> ListPodcastsToUpdate(

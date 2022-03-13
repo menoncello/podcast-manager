@@ -1,6 +1,7 @@
 namespace PodcastManager.FeedUpdater.Domain.Models;
 
-public record Item(string Title,
+public record Item(
+    string Title,
     DateTime PublicationDate,
     string Guid,
     Enclosure Enclosure,

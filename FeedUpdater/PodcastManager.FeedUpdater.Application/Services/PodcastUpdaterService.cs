@@ -39,7 +39,7 @@ public class PodcastUpdaterService : IPodcastUpdaterInteractor
         {
             var now = dateTime.Now();
             var status = new PodcastStatus(
-                NextUpdate: isPublished
+                isPublished
                     ? GetNextPublishedSchedule(now, currentErrors)
                     : GetNextSchedule(now, currentErrors),
                 LastTimeUpdated: now
@@ -88,7 +88,7 @@ public class PodcastUpdaterService : IPodcastUpdaterInteractor
             return (processedFeed, exception);
         }
 
-        async Task<(int, int)> UpdateDatabaseWithoutErrors()
+        async Task<(long, long)> UpdateDatabaseWithoutErrors()
         {
             await podcastRepository.SaveFeedData(code, feed);
             var (newCount, updateCount) = await episodeRepository.Save(code, feed.Items);

@@ -1,3 +1,4 @@
+using PodcastManager.CrossCutting.System.Adapters;
 using PodcastManager.FeedUpdater.Adapters;
 using PodcastManager.FeedUpdater.Application.Services;
 using PodcastManager.FeedUpdater.CrossCutting.Http;
@@ -42,6 +43,9 @@ public class InteractorFactory : IInteractorFactory
         var service = new PodcastUpdaterService();
         service.SetLogger(logger);
         service.SetFeed(feedAdapter);
+        service.SetDateTime(new UtcDateTimeAdapter());
+        service.SetEpisodeRepository(repositoryFactory.CreateEpisode());
+        service.SetPodcastRepository(repositoryFactory.CreatePodcast());
         return service;
     }
     

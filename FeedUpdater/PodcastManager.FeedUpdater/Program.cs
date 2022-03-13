@@ -9,7 +9,7 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .Enrich.FromLogContext()
     .Enrich.WithProperty("ApplicationName", "Feed Updater")
-    .MinimumLevel.Information()
+    .MinimumLevel.Debug()
     .CreateLogger();
 
 Log.Logger.Information("Feed Updater service starting");

@@ -4,6 +4,6 @@ namespace PodcastManager.FeedUpdater.Domain.Repositories;
 
 public interface IEpisodeRepository
 {
-    Task<(int, int)> Save(int code, Item[] feedItems);
-    Task<int> EpisodeCount(int code);
+    Task<(long, long)> Save(int code, Item[] feedItems);
+    Task<long> EpisodeCount(int code);
 }
