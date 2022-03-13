@@ -28,7 +28,6 @@ public class BaseRabbitEnqueuerAdapter : IDisposable
             foreach (var body in bodies)
                 batch.Add(string.Empty, queue, true, properties, body);
             batch.Publish();
-            // var confirmed = channel.WaitForConfirms(TimeSpan.FromMinutes(5));
         }
 
     }

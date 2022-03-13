@@ -134,6 +134,8 @@ public class ItunesAdapter : IItunesAdapter
             var url = string.Format(PodcastUrl, string.Join(",", cs));
             var client = factory.CreateClient();
             var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, url));
+            if (!response.IsSuccessStatusCode)
+                throw new ItunesServerException();
             var json = await response.Content.ReadAsStringAsync();
             var appleResult = JsonConvert.DeserializeObject<AppleResult>(json);
             if (appleResult?.Results?.Any() == true)
@@ -144,4 +146,8 @@ public class ItunesAdapter : IItunesAdapter
 
         return result.ToArray();
     }
+}
+
+public class ItunesServerException : Exception
+{
 }

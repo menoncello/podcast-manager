@@ -19,6 +19,6 @@ public class RabbitItunesCrawlerListenerAdapter : BaseRabbitListenerAdapter
         ListenTo<Letter>(Rabbit.ItunesCrawlerRabbitConfiguration.ImportLetterQueue, 
             interactorFactory.CreateLetter().Execute);
         ListenTo<Page>(Rabbit.ItunesCrawlerRabbitConfiguration.ImportPageQueue,
-            interactorFactory.CreatePage().Execute);
+            interactorFactory.CreatePage().Execute, 3);
     }
 }

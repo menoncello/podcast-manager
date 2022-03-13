@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Text;
 using Newtonsoft.Json;
 using PodcastManager.Adapters;
@@ -29,7 +30,7 @@ public abstract class BaseRabbitListenerAdapter : IListenerAdapter, IDisposable
         GC.SuppressFinalize(this);
     }
     
-    protected void ListenTo<T>(string queue, Func<T, Task> action)
+    protected void ListenTo<T>(string queue, Func<T, Task> action, ushort prefetch = 5, bool isGlobal = true)
     {
         logger.Information("listening to: {Queue}", queue);
         ConfigureChannel();
@@ -61,7 +62,7 @@ public abstract class BaseRabbitListenerAdapter : IListenerAdapter, IDisposable
         void ConfigureChannel()
         {
             channel.QueueDeclare(queue, true, false, false);
-            channel.BasicQos(0, 1, true);
+            channel.BasicQos(0, prefetch, isGlobal);
         }
         EventingBasicConsumer ConfigureConsumer()
         {
