@@ -26,10 +26,13 @@ public class MultiplePodcastUpdaterService : IMultiplePodcastUpdaterInteractor
     public async Task ExecutePublished()
     {
         var podcasts = await repository.ListPublishedPodcastToUpdate();
-        EnqueuePodcasts(podcasts);
+        EnqueuePublishedPodcasts(podcasts);
         logger.Information("Total published podcasts enqueued {Total}", podcasts.Count);
     }
 
     private void EnqueuePodcasts(IReadOnlyCollection<UpdatePodcast> podcasts) => 
         enqueuer.EnqueueUpdatePodcasts(podcasts);
+
+    private void EnqueuePublishedPodcasts(IReadOnlyCollection<UpdatePublishedPodcast> podcasts) => 
+        enqueuer.EnqueueUpdatePublishedPodcasts(podcasts);
 }

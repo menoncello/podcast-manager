@@ -24,8 +24,13 @@ public class MongoPodcastRepository : MongoRepository, IPodcastRepository
     public Task<IReadOnlyCollection<UpdatePodcast>> ListPodcastToUpdate() =>
         ListPodcastsToUpdate(GetNeedsUpdate(dateTime.Now()));
 
-    public Task<IReadOnlyCollection<UpdatePodcast>> ListPublishedPodcastToUpdate() =>
-        ListPodcastsToUpdate(isPublished, GetNeedsUpdate(dateTime.Now()));
+    public async Task<IReadOnlyCollection<UpdatePublishedPodcast>> ListPublishedPodcastToUpdate()
+    {
+        var podcasts = await ListPodcastsToUpdate(isPublished, GetNeedsUpdate(dateTime.Now()));
+        return podcasts
+            .Select(x => new UpdatePublishedPodcast(x.Code, x.Title, x.Feed, x.CurrentErrors))
+            .ToList();
+    }
 
     public async Task SaveFeedData(int code, Feed feed)
     {

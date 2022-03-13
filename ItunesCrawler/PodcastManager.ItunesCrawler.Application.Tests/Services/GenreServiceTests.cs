@@ -2,10 +2,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
+using PodcastManager.Doubles;
 using PodcastManager.ItunesCrawler.Domain.Interactors;
 using PodcastManager.ItunesCrawler.Doubles.Adapters.Enqueuer;
 using PodcastManager.ItunesCrawler.Doubles.Adapters.Itunes;
 using PodcastManager.ItunesCrawler.Messages;
+using Serilog.Core;
 
 namespace PodcastManager.ItunesCrawler.Application.Services;
 
@@ -26,6 +28,7 @@ public class GenreServiceTests
         service = new GenreService();
         service.SetItunes(itunesSpy);
         service.SetEnqueuer(itunesCrawlerEnqueuerSpy);
+        service.SetLogger(new LoggerDummy());
     }
 
     [Test]
