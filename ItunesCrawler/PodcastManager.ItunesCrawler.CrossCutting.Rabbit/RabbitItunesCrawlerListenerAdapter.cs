@@ -15,10 +15,10 @@ public class RabbitItunesCrawlerListenerAdapter : BaseRabbitListenerAdapter
     public override void Listen()
     {
         ListenTo<ImportAll>(Rabbit.ItunesCrawlerRabbitConfiguration.ImportAllQueue,
-            _ => interactorFactory.CreateGenre().Execute());
+            _ => interactorFactory.CreateGenre().Execute(), 2, false);
         ListenTo<Letter>(Rabbit.ItunesCrawlerRabbitConfiguration.ImportLetterQueue, 
-            interactorFactory.CreateLetter().Execute);
+            interactorFactory.CreateLetter().Execute, 2, false);
         ListenTo<Page>(Rabbit.ItunesCrawlerRabbitConfiguration.ImportPageQueue,
-            interactorFactory.CreatePage().Execute, 3);
+            interactorFactory.CreatePage().Execute, 3, false);
     }
 }

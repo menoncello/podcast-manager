@@ -30,7 +30,7 @@ public abstract class BaseRabbitListenerAdapter : IListenerAdapter, IDisposable
         GC.SuppressFinalize(this);
     }
     
-    protected void ListenTo<T>(string queue, Func<T, Task> action, ushort prefetch = 5, bool isGlobal = true)
+    protected void ListenTo<T>(string queue, Func<T, Task> action, ushort prefetch = 30, bool isGlobal = true)
     {
         logger.Information("listening to: {Queue}", queue);
         ConfigureChannel();
