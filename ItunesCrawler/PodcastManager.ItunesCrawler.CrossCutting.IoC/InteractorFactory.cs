@@ -24,10 +24,9 @@ public class InteractorFactory : IInteractorFactory
     public IGenreInteractor CreateGenre()
     {
         var service = new GenreService();
-        
         service.SetEnqueuer(CreateEnqueuerAdapter());
         service.SetItunes(CreateItunesAdapter());
-        
+        service.SetLogger(logger);
         return service;
     }
 
@@ -36,6 +35,7 @@ public class InteractorFactory : IInteractorFactory
         var service = new LetterService();
         service.SetEnqueuer(CreateEnqueuerAdapter());
         service.SetItunes(CreateItunesAdapter());
+        service.SetLogger(logger);
         return service;
     }
 
