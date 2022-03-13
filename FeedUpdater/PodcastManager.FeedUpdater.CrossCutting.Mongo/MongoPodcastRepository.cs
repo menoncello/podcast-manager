@@ -2,6 +2,7 @@ using MongoDB.Driver;
 using PodcastManager.Adapters;
 using PodcastManager.Core.CrossCutting.Mongo;
 using PodcastManager.Domain.Models;
+using PodcastManager.FeedUpdater.Domain.Models;
 using PodcastManager.FeedUpdater.Domain.Repositories;
 using PodcastManager.FeedUpdater.Messages;
 using Serilog;
@@ -24,13 +25,23 @@ public class MongoPodcastRepository : MongoRepository, IPodcastRepository
     public Task<IReadOnlyCollection<UpdatePodcast>> ListPublishedPodcastToUpdate() =>
         ListPodcastsToUpdate(isPublished, GetNeedsUpdate(dateTime.Now()));
 
+    public Task SaveFeedData(int code, Feed feed)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task UpdateStatus(int code, PodcastStatus status, string errorMessage = "")
+    {
+        throw new NotImplementedException();
+    }
+
     private async Task<IReadOnlyCollection<UpdatePodcast>> ListPodcastsToUpdate(
         params FilterDefinition<FullPodcast>[] filters)
     {
         var collection = GetCollection<FullPodcast>("podcasts");
         var cursor = await collection
             .Find(Builders<FullPodcast>.Filter.And(filters), new FindOptions {BatchSize = 100000})
-            .Project(x => new UpdatePodcast(x.Code, x.Title, x.Feed))
+            .Project(x => new UpdatePodcast(x.Code, x.Title, x.Feed, x.IsPublished, x.Status!.ErrorCount))
             .ToCursorAsync();
 
         var result = new List<UpdatePodcast>();

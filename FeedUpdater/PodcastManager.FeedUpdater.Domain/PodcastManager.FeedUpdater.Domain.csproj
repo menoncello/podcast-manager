@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.Domain\PodcastManager.Core.Domain.csproj" />
       <ProjectReference Include="..\PodcastManager.FeedUpdater.Core\PodcastManager.FeedUpdater.Core.csproj" />
     </ItemGroup>
 

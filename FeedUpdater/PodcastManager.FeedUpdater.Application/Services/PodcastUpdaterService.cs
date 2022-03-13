@@ -1,8 +1,11 @@
-using PodcastManager.FeedUpdater.CrossCutting.Http;
+using System.Diagnostics;
+using PodcastManager.Adapters;
+using PodcastManager.Domain.Models;
 using PodcastManager.FeedUpdater.Domain.Adapters;
 using PodcastManager.FeedUpdater.Domain.Exceptions;
 using PodcastManager.FeedUpdater.Domain.Interactors;
 using PodcastManager.FeedUpdater.Domain.Models;
+using PodcastManager.FeedUpdater.Domain.Repositories;
 using PodcastManager.FeedUpdater.Messages;
 using Serilog;
 
@@ -12,21 +15,55 @@ public class PodcastUpdaterService : IPodcastUpdaterInteractor
 {
     private ILogger logger = null!;
     private IFeedAdapter feedAdapter = null!;
+    private IPodcastRepository podcastRepository = null!;
+    private IEpisodeRepository episodeRepository = null!;
+    private IDateTimeAdapter dateTime = null!;
 
     public void SetLogger(ILogger logger) => this.logger = logger;
     public void SetFeed(IFeedAdapter feedAdapter) => this.feedAdapter = feedAdapter;
+    public void SetDateTime(IDateTimeAdapter dateTime) => this.dateTime = dateTime;
+    public void SetPodcastRepository(IPodcastRepository podcastRepository) =>
+        this.podcastRepository = podcastRepository;
+    public void SetEpisodeRepository(IEpisodeRepository episodeRepository) =>
+        this.episodeRepository = episodeRepository;
 
     public async Task Execute(UpdatePodcast podcast)
     {
-        var (code, title, feedUrl) = podcast;
-        var feed = await TryGetFeedData();
-        logger.Information("Processing podcast: {Podcast}", title);
+        var sw = new Stopwatch();
+        sw.Start();
+        
+        var (code, title, feedUrl, isPublished, currentErrors) = podcast;
+        var (feed, error) = await TryGetFeedData();
 
-        async Task<Feed> TryGetFeedData()
+        if (error != null)
         {
+            var now = dateTime.Now();
+            var status = new PodcastStatus(
+                NextUpdate: isPublished
+                    ? GetNextPublishedSchedule(now, currentErrors)
+                    : GetNextSchedule(now, currentErrors),
+                LastTimeUpdated: now
+            );
+            await podcastRepository.UpdateStatus(code, status, error.Message);
+            return;
+        }
+
+        var (newEpisodes, updatedEpisodes) = await UpdateDatabaseWithoutErrors();
+
+        sw.Stop();
+        Action<string, object[]> log = newEpisodes + updatedEpisodes == 0 ? logger.Debug : logger.Information;
+        log("Podcast updated: {Podcast}, total episodes: {Total}, new: {New}, updated: {Updated} in {Time:N0}ms",
+            new object[] {title, feed.Items.Length, newEpisodes, updatedEpisodes, sw.ElapsedMilliseconds});
+
+        async Task<(Feed, Exception?)> TryGetFeedData()
+        {
+            Exception? exception = null;
+            var processedFeed = Feed.Empty();
+            
             try
             {
-                return await feedAdapter.Get(feedUrl);
+                processedFeed = await feedAdapter.Get(feedUrl);
+                return (processedFeed, exception);
             }
             catch (ServerErrorException e)
             {
@@ -34,19 +71,42 @@ public class PodcastUpdaterService : IPodcastUpdaterInteractor
                     e.Code,
                     e.Reason,
                     podcast);
-                return Feed.Empty();
+                exception = e;
             }
-            catch (TryToParseErrorException)
+            catch (TryToParseErrorException e)
             {
                 logger.Error("Parsing XML error for {Podcast}",
                     podcast);
-                return Feed.Empty();
+                exception = e;
             }
             catch (Exception e)
             {
                 logger.Error(e, "generic error with {Podcast}", podcast);
-                throw;
+                exception = e;
             }
+
+            return (processedFeed, exception);
+        }
+
+        async Task<(int, int)> UpdateDatabaseWithoutErrors()
+        {
+            await podcastRepository.SaveFeedData(code, feed);
+            var (newCount, updateCount) = await episodeRepository.Save(code, feed.Items);
+            var totalEpisodes = await episodeRepository.EpisodeCount(code);
+            var now = dateTime.Now();
+            var status = new PodcastStatus(
+                isPublished ? GetNextPublishedSchedule(now) : GetNextSchedule(now),
+                totalEpisodes,
+                now
+            );
+            await podcastRepository.UpdateStatus(code, status);
+            return (newCount, updateCount);
         }
     }
+
+    private static DateTime GetNextSchedule(DateTime now, int errorCount = 0) =>
+        now.Add(FeedUpdaterConfiguration.PodcastNextSchedule * (errorCount + 1));
+
+    private static DateTime GetNextPublishedSchedule(DateTime now, int errorCount = 0) =>
+        now.Add(FeedUpdaterConfiguration.PublishedPodcastNextSchedule * (errorCount + 1));
 }

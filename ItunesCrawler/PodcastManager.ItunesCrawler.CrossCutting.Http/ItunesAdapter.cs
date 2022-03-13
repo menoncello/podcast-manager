@@ -124,9 +124,9 @@ public class ItunesAdapter : IItunesAdapter
             .ToArray();
     }
 
-    public async Task<ApplePodcast[]> GetPodcasts(int[] codes)
+    public async Task<ItunesPodcast[]> GetPodcasts(int[] codes)
     {
-        var result = new List<ApplePodcast>();
+        var result = new List<ItunesPodcast>();
 
         while (codes.Any())
         {

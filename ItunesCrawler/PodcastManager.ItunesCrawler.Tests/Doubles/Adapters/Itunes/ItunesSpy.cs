@@ -25,7 +25,7 @@ public class ItunesSpy : ItunesStub
         return base.GetTotalPages(letter);
     }
 
-    public override Task<ApplePodcast[]> GetPodcasts(int[] codes)
+    public override Task<ItunesPodcast[]> GetPodcasts(int[] codes)
     {
         GetPodcastsSpy.Call(codes);
         return base.GetPodcasts(codes);
