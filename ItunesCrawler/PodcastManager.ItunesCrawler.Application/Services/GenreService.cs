@@ -1,6 +1,7 @@
 using PodcastManager.ItunesCrawler.Adapters;
 using PodcastManager.ItunesCrawler.Domain.Interactors;
 using PodcastManager.ItunesCrawler.Messages;
+using Serilog;
 
 namespace PodcastManager.ItunesCrawler.Application.Services;
 
@@ -8,6 +9,7 @@ public class GenreService : IGenreInteractor
 {
     private IItunesAdapter itunes = null!;
     private IItunesCrawlerEnqueuerAdapter itunesCrawlerEnqueuer = null!;
+    private ILogger logger = null!;
 
     private const string Letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#";
 
@@ -16,18 +18,16 @@ public class GenreService : IGenreInteractor
         var genres = await itunes.GetGenres();
 
         var letters = genres
-            .SelectMany(_ => Letters, (genre, letter) => new Letter(genre, letter));
+            .SelectMany(_ => Letters, (genre, letter) => new Letter(genre, letter))
+            .ToList();
 
-        foreach (var letter in letters) itunesCrawlerEnqueuer.EnqueueLetter(letter);
+        itunesCrawlerEnqueuer.EnqueueLetter(letters);
+        logger.Information("Enqueueing {TotalLetters:N0} letters for {TotalGenres} genres",
+            letters.Count, genres.Length);
     }
 
-    public void SetItunes(IItunesAdapter itunes)
-    {
-        this.itunes = itunes;
-    }
-
-    public void SetEnqueuer(IItunesCrawlerEnqueuerAdapter itunesCrawlerEnqueuer)
-    {
+    public void SetItunes(IItunesAdapter itunes) => this.itunes = itunes;
+    public void SetLogger(ILogger logger) => this.logger = logger;
+    public void SetEnqueuer(IItunesCrawlerEnqueuerAdapter itunesCrawlerEnqueuer) =>
         this.itunesCrawlerEnqueuer = itunesCrawlerEnqueuer;
-    }
 }

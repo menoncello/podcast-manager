@@ -28,16 +28,17 @@ public class MongoPodcastRepository : MongoRepository, IPodcastRepository
         }
 
         UpdateDefinition<PodcastData> CreateUpdate(PodcastData podcast) =>
-            Builders<PodcastData>.Update.Set(x => x.Imported.Genres, podcast.Imported.Genres)
-                .Set(x => x.Imported.ArtistId, podcast.Imported.ArtistId)
-                .Set(x => x.Imported.ArtworkUrl600, podcast.Imported.ArtworkUrl600)
-                .Set(x => x.Imported.CollectionExplicitness, podcast.Imported.CollectionExplicitness)
-                .Set(x => x.Imported.CollectionId, podcast.Imported.CollectionId)
-                .Set(x => x.Imported.CollectionName, podcast.Imported.CollectionName)
-                .Set(x => x.Imported.FeedUrl, podcast.Imported.FeedUrl)
-                .Set(x => x.Imported.GenreIds, podcast.Imported.GenreIds)
-                .Set(x => x.Imported.ContentAdvisoryRating, podcast.Imported.ContentAdvisoryRating)
-                .Set(x => x.Imported.PrimaryGenreName, podcast.Imported.PrimaryGenreName);
+            Builders<PodcastData>.Update
+                .Set(x => x.Imported.Itunes!.Genres, podcast.Imported.Itunes!.Genres)
+                .SetOrUnset(x => x.Imported.Itunes!.ArtistId!, podcast.Imported.Itunes!.ArtistId)
+                .Set(x => x.Imported.Itunes!.ArtworkUrl600, podcast.Imported.Itunes!.ArtworkUrl600)
+                .SetOrUnset(x => x.Imported.Itunes!.CollectionExplicitness!, podcast.Imported.Itunes!.CollectionExplicitness)
+                .Set(x => x.Imported.Itunes!.CollectionId, podcast.Imported.Itunes!.CollectionId)
+                .Set(x => x.Imported.Itunes!.CollectionName, podcast.Imported.Itunes!.CollectionName)
+                .Set(x => x.Imported.Itunes!.FeedUrl, podcast.Imported.Itunes!.FeedUrl)
+                .Set(x => x.Imported.Itunes!.GenreIds, podcast.Imported.Itunes!.GenreIds)
+                .SetOrUnset(x => x.Imported.Itunes!.ContentAdvisoryRating!, podcast.Imported.Itunes!.ContentAdvisoryRating)
+                .SetOrUnset(x => x.Imported.Itunes!.PrimaryGenreName, podcast.Imported.Itunes!.PrimaryGenreName);
 
         async Task<(WriteModel<PodcastData>[] requests, int newPodcasts)> PrepareRequests()
         {

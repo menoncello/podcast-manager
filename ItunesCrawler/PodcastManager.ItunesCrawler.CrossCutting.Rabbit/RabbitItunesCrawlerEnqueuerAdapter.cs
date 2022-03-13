@@ -6,11 +6,11 @@ namespace PodcastManager.ItunesCrawler.CrossCutting.Rabbit;
 
 public class RabbitItunesCrawlerEnqueuerAdapter : BaseRabbitEnqueuerAdapter, IItunesCrawlerEnqueuerAdapter
 {
-    public void EnqueueLetter(Letter letter) =>
-        Publish(ItunesCrawlerRabbitConfiguration.ImportLetterQueue, letter);
+    public void EnqueueLetter(IEnumerable<Letter> letters) =>
+        BatchPublish(ItunesCrawlerRabbitConfiguration.ImportLetterQueue, letters);
 
-    public void EnqueuePage(Page page) =>
-        Publish(ItunesCrawlerRabbitConfiguration.ImportPageQueue, page);
+    public void EnqueuePage(IEnumerable<Page> pages) =>
+        BatchPublish(ItunesCrawlerRabbitConfiguration.ImportPageQueue, pages);
 
     public void EnqueueStart() =>
         Publish(ItunesCrawlerRabbitConfiguration.ImportAllQueue, new ImportAll());
