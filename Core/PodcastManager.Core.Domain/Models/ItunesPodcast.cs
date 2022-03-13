@@ -1,6 +1,6 @@
 namespace PodcastManager.Domain.Models;
 
-public record ApplePodcast(
+public record ItunesPodcast(
     int CollectionId,
     string CollectionName,
     string FeedUrl,

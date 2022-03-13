@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.CrossCutting.Rabbit\PodcastManager.Core.CrossCutting.Rabbit.csproj" />
+      <ProjectReference Include="..\PodcastManager.FeedUpdater.Core\PodcastManager.FeedUpdater.Core.csproj" />
+      <ProjectReference Include="..\PodcastManager.FeedUpdater.Domain\PodcastManager.FeedUpdater.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

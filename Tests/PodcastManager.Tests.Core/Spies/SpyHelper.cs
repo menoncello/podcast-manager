@@ -8,6 +8,7 @@ public class SpyHelper
     
     public void Call() => timesCalled++;
     public void ShouldBeCalledOnce() => timesCalled.Should().Be(1);
+    public void ShouldNeverBeCalled() => timesCalled.Should().Be(0);
     public void ShouldBeCalled(int times) => timesCalled.Should().Be(times);
 }
 

@@ -10,7 +10,7 @@ public class ItunesStub : IItunesAdapter
 {
     public int[] PodcastCodes { get; } = {1, 2, 3, 4};
 
-    public ApplePodcast[] Podcasts { get; } =
+    public ItunesPodcast[] Podcasts { get; } =
     {
         new(1, "PC 1", "feed1", new[] {1, 2, 3},
             new[] {"Genre 1", "Genre 2", "Genre 3"}, "image 1", "Genre 1"),
@@ -38,6 +38,6 @@ public class ItunesStub : IItunesAdapter
     public virtual Task<int[]> PodcastsFromPage(Page page) =>
         Task.FromResult(PodcastCodes);
     
-    public virtual Task<ApplePodcast[]> GetPodcasts(int[] codes) =>
+    public virtual Task<ItunesPodcast[]> GetPodcasts(int[] codes) =>
         Task.FromResult(Podcasts);
 }

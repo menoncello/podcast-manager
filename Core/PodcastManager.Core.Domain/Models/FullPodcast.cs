@@ -1,8 +1,8 @@
 namespace PodcastManager.Domain.Models;
 
 public record FullPodcast(
-        PodcastStatus Status,
-        ApplePodcast Imported,
+        PodcastStatus? Status,
+        ImportedPodcast Imported,
         int Code,
         string Title,
         string Feed,

@@ -8,4 +8,17 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="RabbitMQ.Client" Version="6.2.4" />
+      <PackageReference Include="Serilog" Version="2.10.0" />
+      <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.CrossCutting.Mongo\PodcastManager.Core.CrossCutting.Mongo.csproj" />
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.CrossCutting.Rabbit\PodcastManager.Core.CrossCutting.Rabbit.csproj" />
+      <ProjectReference Include="..\PodcastManager.FeedUpdater.CrossCutting.IoC\PodcastManager.FeedUpdater.CrossCutting.IoC.csproj" />
+      <ProjectReference Include="..\PodcastManager.FeedUpdater.CrossCutting.Rabbit\PodcastManager.FeedUpdater.CrossCutting.Rabbit.csproj" />
+    </ItemGroup>
+
 </Project>

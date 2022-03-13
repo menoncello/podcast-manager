@@ -6,7 +6,7 @@ namespace PodcastManager.ItunesCrawler.CrossCutting.Mongo.Data;
 
 [BsonIgnoreExtraElements]
 public record PodcastData(
-    ApplePodcast Imported,
+    ItunesPodcast Imported,
     int Code,
     string Title,
     string Feed,
