@@ -13,8 +13,8 @@ public class RabbitUpdaterListenerAdapter : BaseRabbitListenerAdapter
 
     public override void Listen()
     {
-        // ListenTo<UpdatePodcast>(UpdaterRabbitConfiguration.UpdatePodcastQueue,
-        //     interactorFactory.CreatePodcastUpdater().Execute);
+        ListenTo<UpdatePodcast>(UpdaterRabbitConfiguration.UpdatePodcastQueue,
+            podcast => interactorFactory.CreatePodcastUpdater().Execute(podcast));
         ListenTo<UpdatePodcasts>(UpdaterRabbitConfiguration.UpdatePodcastsQueue, 
             _ => interactorFactory.CreateMultiple().Execute());
         ListenTo<UpdatePublishedPodcasts>(UpdaterRabbitConfiguration.UpdatePublishedPodcastsQueue,

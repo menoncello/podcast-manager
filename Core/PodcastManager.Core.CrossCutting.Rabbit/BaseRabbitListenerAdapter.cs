@@ -61,7 +61,7 @@ public abstract class BaseRabbitListenerAdapter : IListenerAdapter, IDisposable
         void ConfigureChannel()
         {
             channel.QueueDeclare(queue, true, false, false);
-            channel.BasicQos(0, 5, true);
+            channel.BasicQos(0, 20, true);
         }
         EventingBasicConsumer ConfigureConsumer()
         {

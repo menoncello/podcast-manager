@@ -1,4 +1,6 @@
+using System.Net;
 using PodcastManager.FeedUpdater.Domain.Adapters;
+using PodcastManager.FeedUpdater.Domain.Exceptions;
 using PodcastManager.FeedUpdater.Domain.Interactors;
 using PodcastManager.FeedUpdater.Domain.Models;
 
@@ -18,6 +20,8 @@ public class FeedAdapter : IFeedAdapter
     {
         var client = httpClientFactory.CreateClient();
         var response = await client.GetAsync(feedUrl);
+        if (response.StatusCode != HttpStatusCode.OK)
+            throw new ServerErrorException(response.StatusCode, response.ReasonPhrase);
         var body = await response.Content.ReadAsStringAsync();
         return converter.Execute(body);
     }

@@ -1,8 +1,10 @@
 using PodcastManager.FeedUpdater.Adapters;
 using PodcastManager.FeedUpdater.Application.Services;
+using PodcastManager.FeedUpdater.CrossCutting.Http;
 using PodcastManager.FeedUpdater.CrossCutting.Rabbit;
 using PodcastManager.FeedUpdater.Domain.Factories;
 using PodcastManager.FeedUpdater.Domain.Interactors;
+using PodcastManager.ItunesCrawler.CrossCutting.Http;
 using RabbitMQ.Client;
 using Serilog;
 
@@ -31,8 +33,15 @@ public class InteractorFactory : IInteractorFactory
 
     public IPodcastUpdaterInteractor CreatePodcastUpdater()
     {
+        var feedConverter = new FeedConverterService();
+       
+        var feedAdapter = new FeedAdapter();
+        feedAdapter.SetConverter(feedConverter);
+        feedAdapter.SetHttpClientFactory(new HttpClientFactory());
+        
         var service = new PodcastUpdaterService();
         service.SetLogger(logger);
+        service.SetFeed(feedAdapter);
         return service;
     }
     

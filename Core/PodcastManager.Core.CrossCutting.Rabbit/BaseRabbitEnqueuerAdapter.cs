@@ -27,11 +27,10 @@ public class BaseRabbitEnqueuerAdapter : IDisposable
             var batch = channel.CreateBasicPublishBatch();
             foreach (var body in bodies)
                 batch.Add(string.Empty, queue, true, properties, body);
-           
+            batch.Publish();
             // var confirmed = channel.WaitForConfirms(TimeSpan.FromMinutes(5));
-            
         }
-       
+
     }
     protected void Publish<T>(string queue, T message)
     {

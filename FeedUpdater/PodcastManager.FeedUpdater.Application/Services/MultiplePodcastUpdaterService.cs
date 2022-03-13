@@ -28,7 +28,6 @@ public class MultiplePodcastUpdaterService : IMultiplePodcastUpdaterInteractor
         var podcasts = await repository.ListPublishedPodcastToUpdate();
         EnqueuePodcasts(podcasts);
         logger.Information("Total published podcasts enqueued {Total}", podcasts.Count);
-
     }
 
     private void EnqueuePodcasts(IReadOnlyCollection<UpdatePodcast> podcasts) => 

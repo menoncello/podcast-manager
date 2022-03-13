@@ -9,8 +9,10 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Core\PodcastManager.Core.CrossCutting.Mongo\PodcastManager.Core.CrossCutting.Mongo.csproj" />
       <ProjectReference Include="..\..\Core\PodcastManager.Core.CrossCutting.System\PodcastManager.Core.CrossCutting.System.csproj" />
+      <ProjectReference Include="..\..\ItunesCrawler\PodcastManager.ItunesCrawler.CrossCutting.Http\PodcastManager.ItunesCrawler.CrossCutting.Http.csproj" />
       <ProjectReference Include="..\..\ItunesCrawler\PodcastManager.ItunesCrawler.CrossCutting.Mongo\PodcastManager.ItunesCrawler.CrossCutting.Mongo.csproj" />
       <ProjectReference Include="..\PodcastManager.FeedUpdater.Application\PodcastManager.FeedUpdater.Application.csproj" />
+      <ProjectReference Include="..\PodcastManager.FeedUpdater.CrossCutting.Http\PodcastManager.FeedUpdater.CrossCutting.Http.csproj" />
       <ProjectReference Include="..\PodcastManager.FeedUpdater.CrossCutting.Mongo\PodcastManager.FeedUpdater.CrossCutting.Mongo.csproj" />
       <ProjectReference Include="..\PodcastManager.FeedUpdater.CrossCutting.Rabbit\PodcastManager.FeedUpdater.CrossCutting.Rabbit.csproj" />
       <ProjectReference Include="..\PodcastManager.FeedUpdater.Domain\PodcastManager.FeedUpdater.Domain.csproj" />
