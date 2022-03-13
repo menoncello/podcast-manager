@@ -15,19 +15,26 @@ public class PageService : IPageInteractor
 
     public async Task Execute(Page page)
     {
-        var codes = await itunes.PodcastsFromPage(page);
-        var applePodcasts = await itunes.GetPodcasts(codes);
-        var podcasts = applePodcasts
-            .Where(x => !string.IsNullOrEmpty(x.FeedUrl))
-            .Select(Podcast.FromApple)
-            .ToArray();
-        var (total, newPodcasts, updated) = await repository.Upsert(podcasts);
+        try
+        {
+            var codes = await itunes.PodcastsFromPage(page);
+            var applePodcasts = await itunes.GetPodcasts(codes);
+            var podcasts = applePodcasts
+                .Where(x => !string.IsNullOrEmpty(x.FeedUrl))
+                .Select(Podcast.FromApple)
+                .ToArray();
+            var (total, newPodcasts, updated) = await repository.Upsert(podcasts);
 
-        if (newPodcasts + updated == 0) return;
+            if (newPodcasts + updated == 0) return;
         
-        logger.Information("{Genre} - {Char} - {Page} - Total podcasts: {Total} - " +
-                           "new: {NewPodcasts} - updated: {UpdatedPodcasts}",
-            page.Letter.Genre, page.Letter.Char, page.Number, total, newPodcasts, updated);
+            logger.Information("{Genre} - {Char} - {Page} - Total podcasts: {Total} - " +
+                               "new: {NewPodcasts} - updated: {UpdatedPodcasts}",
+                page.Letter.Genre, page.Letter.Char, page.Number, total, newPodcasts, updated);
+        }
+        catch (Exception e)
+        {
+            logger.Error(e, "error in {Page}", page);
+        }
     }
 
     public void SetItunes(IItunesAdapter itunes) => this.itunes = itunes;

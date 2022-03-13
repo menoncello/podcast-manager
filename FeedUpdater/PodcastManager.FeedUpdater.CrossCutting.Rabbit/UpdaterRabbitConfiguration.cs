@@ -7,6 +7,9 @@ public class UpdaterRabbitConfiguration : BaseRabbitEnqueuerAdapter
     public static string UpdatePodcastQueue { get; } =
         Environment.GetEnvironmentVariable("UpdatePodcast")
         ?? "PodcastManager.UpdatePodcast";
+    public static string UpdatePublishedPodcastQueue { get; } =
+        Environment.GetEnvironmentVariable("UpdatePublishedPodcast")
+        ?? "PodcastManager.UpdatePublishedPodcast";
     public static string UpdatePodcastsQueue { get; } =
         Environment.GetEnvironmentVariable("UpdatePodcasts")
         ?? "PodcastManager.UpdatePodcasts";

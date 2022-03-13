@@ -55,8 +55,8 @@ public class MultiplePodcastUpdaterInteractorTests
     {
         await service.ExecutePublished();
         podcastRepositorySpy.ListPublishedPodcastToUpdateSpy.ShouldBeCalledOnce();
-        updaterEnqueuerSpy.EnqueueUpdatePodcastsSpy.ShouldBeCalledOnce();
-        updaterEnqueuerSpy.EnqueueUpdatePodcastsSpy.LastParameter
+        updaterEnqueuerSpy.EnqueueUpdatePublishedPodcastsSpy.ShouldBeCalledOnce();
+        updaterEnqueuerSpy.EnqueueUpdatePublishedPodcastsSpy.LastParameter
             .Should().BeEquivalentTo(podcastRepositorySpy.Podcasts.Take(3));
     }
 }

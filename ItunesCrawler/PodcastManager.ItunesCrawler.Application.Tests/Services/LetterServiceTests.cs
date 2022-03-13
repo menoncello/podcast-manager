@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
+using PodcastManager.Doubles;
 using PodcastManager.ItunesCrawler.Domain.Interactors;
 using PodcastManager.ItunesCrawler.Doubles.Adapters.Enqueuer;
 using PodcastManager.ItunesCrawler.Doubles.Adapters.Itunes;
@@ -22,6 +23,7 @@ public class LetterServiceTests
         service = new LetterService();
         service.SetEnqueuer(itunesCrawlerEnqueuerSpy);
         service.SetItunes(itunesSpy);
+        service.SetLogger(new LoggerDummy());
     }
 
     [SetUp]

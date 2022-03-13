@@ -15,6 +15,8 @@ public class RabbitUpdaterListenerAdapter : BaseRabbitListenerAdapter
     {
         ListenTo<UpdatePodcast>(UpdaterRabbitConfiguration.UpdatePodcastQueue,
             podcast => interactorFactory.CreatePodcastUpdater().Execute(podcast));
+        ListenTo<UpdatePublishedPodcast>(UpdaterRabbitConfiguration.UpdatePublishedPodcastQueue,
+            podcast => interactorFactory.CreatePodcastUpdater().Execute(podcast));
         ListenTo<UpdatePodcasts>(UpdaterRabbitConfiguration.UpdatePodcastsQueue, 
             _ => interactorFactory.CreateMultiple().Execute());
         ListenTo<UpdatePublishedPodcasts>(UpdaterRabbitConfiguration.UpdatePublishedPodcastsQueue,

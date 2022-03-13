@@ -1,3 +1,3 @@
 namespace PodcastManager.Domain.Models;
 
-public record Enclosure(string Url, int Length, string Type);
+public record Enclosure(string Url, long Length, string Type);

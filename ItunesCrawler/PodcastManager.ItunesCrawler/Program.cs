@@ -9,6 +9,7 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .Enrich.FromLogContext()
     .Enrich.WithProperty("ApplicationName", "iTunes Crawler")
+    .MinimumLevel.Information()
     .CreateLogger();
 
 Log.Logger.Information("iTunes Crawler service starting");

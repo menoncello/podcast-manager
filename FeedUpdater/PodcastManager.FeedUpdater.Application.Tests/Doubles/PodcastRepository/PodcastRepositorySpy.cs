@@ -19,7 +19,7 @@ public class PodcastRepositorySpy : PodcastRepositoryStub
         return base.ListPodcastToUpdate();
     }
 
-    public override Task<IReadOnlyCollection<UpdatePodcast>> ListPublishedPodcastToUpdate()
+    public override Task<IReadOnlyCollection<UpdatePublishedPodcast>> ListPublishedPodcastToUpdate()
     {
         ListPublishedPodcastToUpdateSpy.Call();
         return base.ListPublishedPodcastToUpdate();

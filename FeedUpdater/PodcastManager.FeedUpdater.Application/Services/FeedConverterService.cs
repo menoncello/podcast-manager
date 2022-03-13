@@ -80,19 +80,42 @@ public class FeedConverterService : IFeedConverterInteractor
 
     private TimeSpan ConvertToTimeSpan(XElement element)
     {
-        var numbers = element.Value
-            .Split(':')
-            .Select(int.Parse)
-            .ToArray();
+        if (TryConvertToTimeSpan(element, out var value, out var exception))
+            return value!.Value;
 
-        return numbers.Length switch
-        {
-            >= 3 => new TimeSpan(numbers[^3], numbers[^2], numbers[^1]),
-            2 => new TimeSpan(0, numbers[0], numbers[1]),
-            1 => new TimeSpan(0, 0, numbers[0]),
-            _ => throw new Exception("TimeSpan bad formatted")
-        };
+        throw exception!;
     }
+
+    private bool TryConvertToTimeSpan(XElement element, out TimeSpan? value, out Exception? exception)
+    {
+        try
+        {
+            var cleaned = CleanTimeSpan(element.Value);
+            var numbers = cleaned
+                .Split(':')
+                .Select(int.Parse)
+                .ToArray();
+
+            value = numbers.Length switch
+            {
+                >= 3 => new TimeSpan(numbers[^3], numbers[^2], numbers[^1]),
+                2 => new TimeSpan(0, numbers[0], numbers[1]),
+                _ => new TimeSpan(0, 0, numbers[0]),
+            };
+            exception = null;
+            return true;
+        }
+        catch (Exception e)
+        {
+            value = null;
+            exception = e;
+            return false;
+        }
+    }
+
+    private static string CleanTimeSpan(string value) =>
+        value
+            .Replace(" min", ":00");
 
     private Enclosure ConvertToEnclosure(XElement element)
     {
@@ -107,7 +130,7 @@ public class FeedConverterService : IFeedConverterInteractor
             GetAttributeValue(element, "type"));
     }
 
-    public static bool TryParseLength(string? text, out int length)
+    public static bool TryParseLength(string? text, out long length)
     {
         length = 0;
         if (string.IsNullOrWhiteSpace(text)) return true;
@@ -121,7 +144,7 @@ public class FeedConverterService : IFeedConverterInteractor
 
         if (double.TryParse(text, out var valueDouble))
         {
-            length = Convert.ToInt32(valueDouble * 1024 * 1024);
+            length = Convert.ToInt64(valueDouble * 1024 * 1024);
             return true;
         }
 
@@ -134,8 +157,12 @@ public class FeedConverterService : IFeedConverterInteractor
             throw new ArgumentNullException(nameof(text));
 
         if (text.Length < 16)
+        {
+            if (DateTime.TryParse(text, out var firstDate))
+                return firstDate;
             throw new DateTimeBadFormattedException(text);
-
+        }
+        
         var cleanedText = Clean(text);
 
         if (!DateTime.TryParse(cleanedText, out var date))

@@ -50,6 +50,8 @@ public class MongoEpisodeRepository : MongoRepository, IEpisodeRepository
             var definition = new UpdateOneModel<Episode>(filter, update) { IsUpsert = true };
             requests.Add(definition);
         }
+
+        if (requests.Count == 0) return (0, 0);
         
         var result = await collection.BulkWriteAsync(requests);
         return (result.Upserts.Count, result.ModifiedCount);

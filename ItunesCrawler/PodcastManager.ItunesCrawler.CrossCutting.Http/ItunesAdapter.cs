@@ -119,9 +119,9 @@ public class ItunesAdapter : IItunesAdapter
         
         if (parent == null) return Array.Empty<int>();
 
-        return GetLinkElements(parent)!
-            .Select(GetUrlId)
-            .ToArray();
+        var linkElements = GetLinkElements(parent)!;
+        var ids = linkElements.Select(GetUrlId);
+        return ids.ToArray();
     }
 
     public async Task<ItunesPodcast[]> GetPodcasts(int[] codes)
