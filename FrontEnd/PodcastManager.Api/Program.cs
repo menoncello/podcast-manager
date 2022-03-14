@@ -15,4 +15,5 @@ var app = builder
 
 app.SetUp();
 
+app.Urls.Add("http://192.168.5.164:5000/");
 app.Run();
