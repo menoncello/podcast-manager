@@ -11,6 +11,9 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Administration\PodcastManager.Administration.Core\PodcastManager.Administration.Core.csproj" />
       <ProjectReference Include="..\..\Administration\PodcastManager.Administration.CrossCutting.Rabbit\PodcastManager.Administration.CrossCutting.Rabbit.csproj" />
+      <ProjectReference Include="..\..\Feed\PodcastManager.Feed.Application\PodcastManager.Feed.Application.csproj" />
+      <ProjectReference Include="..\..\Feed\PodcastManager.Feed.Core\PodcastManager.Feed.Core.csproj" />
+      <ProjectReference Include="..\..\Feed\PodcastManager.Feed.CrossCutting.IoC\PodcastManager.Feed.CrossCutting.IoC.csproj" />
       <ProjectReference Include="..\..\ItunesCrawler\PodcastManager.ItunesCrawler.Core\PodcastManager.ItunesCrawler.Core.csproj" />
       <ProjectReference Include="..\..\ItunesCrawler\PodcastManager.ItunesCrawler.CrossCutting.Rabbit\PodcastManager.ItunesCrawler.CrossCutting.Rabbit.csproj" />
     </ItemGroup>

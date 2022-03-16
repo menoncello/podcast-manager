@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+    <channel>
+        <title>Sample Feed 2</title>
+        <link>https://podcastmanager.com</link>
+        <description>this is a sample of description</description>
+        <image>
+            <url>sampleimage.jpg</url>
+            <title>Podcast Manager</title>
+            <link>https://podcastmanager.com</link>
+        </image>
+    </channel>
+</rss>

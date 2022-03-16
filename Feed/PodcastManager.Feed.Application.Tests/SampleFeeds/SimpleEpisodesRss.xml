@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+    <channel>
+        <title>Sample Feed 3</title>
+        <image>
+            <url>sampleimage.jpg</url>
+            <title>Podcast Manager</title>
+            <link>https://podcastmanager.com</link>
+        </image>
+        <item>
+            <title>episode 03</title>
+            <pubDate>Mon, 14 Mar 2022 13:00:00 +0000</pubDate>
+            <enclosure url="episode-03.mp3" length="125" type="audio/mpeg" />
+            <guid isPermalink="false">sampleguid3</guid>
+            <itunes:summary><![CDATA[]]></itunes:summary>
+            <description><![CDATA[]]></description>
+            <itunes:image href="image2" />
+        </item>
+        <item>
+            <title>episode 02</title>
+            <pubDate>Mon, 07 Mar 2022 13:00:00 +0000</pubDate>
+            <enclosure url="episode-02.mp3" length="124" type="audio/mpeg" />
+            <guid isPermalink="false">sampleguid2</guid>
+            <itunes:summary><![CDATA[]]></itunes:summary>
+            <description><![CDATA[]]></description>
+            <itunes:image href="sampleimage.jpg" />
+        </item>
+        <item>
+            <title>episode 01</title>
+            <pubDate>Mon, 28 Feb 2022 13:00:00 +0000</pubDate>
+            <enclosure url="episode-01.mp3" length="123" type="audio/mpeg" />
+            <guid isPermalink="false">sampleguid1</guid>
+            <itunes:summary><![CDATA[]]></itunes:summary>
+            <description><![CDATA[]]></description>
+            <itunes:image href="sampleimage.jpg" />
+        </item>
+    </channel>
+</rss>

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\PodcastManager.Core.CrossCutting.Mongo\PodcastManager.Core.CrossCutting.Mongo.csproj" />
+      <ProjectReference Include="..\PodcastManager.Feed.Application\PodcastManager.Feed.Application.csproj" />
+      <ProjectReference Include="..\PodcastManager.Feed.CrossCutting.Mongo\PodcastManager.Feed.CrossCutting.Mongo.csproj" />
+      <ProjectReference Include="..\PodcastManager.Feed.Domain\PodcastManager.Feed.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MongoDB.Driver" Version="2.14.1" />
+    </ItemGroup>
+
+</Project>

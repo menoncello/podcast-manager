@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+
+        <IsPackable>false</IsPackable>
+
+        <RootNamespace>PodcastManager.Feed.Application</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="6.5.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+        <PackageReference Include="NUnit" Version="3.13.2" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+        <PackageReference Include="coverlet.collector" Version="3.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Tests\PodcastManager.Tests.Core\PodcastManager.Tests.Core.csproj" />
+      <ProjectReference Include="..\PodcastManager.Feed.Application\PodcastManager.Feed.Application.csproj" />
+      <ProjectReference Include="..\PodcastManager.Feed.Core\PodcastManager.Feed.Core.csproj" />
+      <ProjectReference Include="..\PodcastManager.Feed.Domain\PodcastManager.Feed.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="SampleFeeds\SimpleRss.xml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="SampleFeeds\FullHeaderRss.xml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="SampleFeeds\SimpleEpisodesRss.xml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

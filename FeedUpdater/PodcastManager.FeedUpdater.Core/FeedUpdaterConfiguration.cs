@@ -7,5 +7,5 @@ public static class FeedUpdaterConfiguration
                        ?? "00:30:00");
     public static readonly TimeSpan PodcastNextSchedule =
         TimeSpan.Parse(Environment.GetEnvironmentVariable("PodcastNextSchedule")
-                       ?? "03:00:00");
+                       ?? "24:00:00");
 }
