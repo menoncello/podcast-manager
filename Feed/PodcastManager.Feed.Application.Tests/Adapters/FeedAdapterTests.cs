@@ -53,7 +53,9 @@ public class FeedAdapterTests
     public void Build_WithSimpleEpisodesRss()
     {
         var rss = File.ReadAllText(@"./SampleFeeds/SimpleEpisodesRss.xml");
-        var feed = new Domain.Models.Feed("Sample Feed 3")
+        var feed = new Domain.Models.Feed(
+            "Sample Feed 3",
+            Image: new Image("sampleimage.jpg", "Podcast Manager", "https://podcastmanager.com"))
         {
             Items = new[]
             {
@@ -62,7 +64,8 @@ public class FeedAdapterTests
                     new DateTime(2022, 3, 14, 13, 0, 0),
                     "sampleguid3",
                     new Enclosure("episode-03.mp3", 125, "audio/mpeg"), 
-                    1),
+                    1,
+                    Image: "image2"),
                 new Item(
                     "episode 02",
                     new DateTime(2022, 3, 7, 13, 0, 0),

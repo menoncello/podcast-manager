@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
     <channel>
         <title>Sample Feed 1</title>
     </channel>

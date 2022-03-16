@@ -14,7 +14,7 @@ public class MongoPlaylistRepository : IPlaylistRepository
     {
         var collection = database.GetCollection<Playlist>("playlists");
         var pipeline = PipelineDefinition<Playlist, Item>
-            .Create(AggregationFactory.Instance.GetSinglePlaylistFeed(username, slug, 50));
+            .Create(AggregationFactory.Instance.GetSinglePlaylistFeed(username, slug, 500));
         var cursor = await collection.AggregateAsync(pipeline);
 
         var feed = new Domain.Models.Feed($"Feed {slug}")

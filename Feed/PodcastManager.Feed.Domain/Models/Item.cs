@@ -6,7 +6,7 @@ public record Item(
     string Guid,
     Enclosure Enclosure,
     int PodcastCode,
-    string? Podcast = null,
+    string Podcast = "",
     string[]? Alias = null,
     string? ShortTitle = null,
     string? Link = null,

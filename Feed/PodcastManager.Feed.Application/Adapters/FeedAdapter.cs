@@ -1,6 +1,7 @@
 using System.Security;
 using System.Text;
 using PodcastManager.Feed.Adapters;
+using PodcastManager.Feed.Domain.Models;
 
 namespace PodcastManager.Feed.Application.Adapters;
 
@@ -36,15 +37,37 @@ public class FeedAdapter : IFeedAdapter
             {
                 using (new ItemTag(sb))
                 {
-                    AddTag(sb, "title", SecurityElement.Escape(item.Title), 3);
+                    var itemTitle = EnrichTitle(item);
+                    AddTag(sb, "title", SecurityElement.Escape(itemTitle), 3);
                     AddTag(sb, "pubDate", item.PublicationDate.ToString("R").Replace("GMT", "+0000"), 3);
                     AddTagAutoClose(sb, "enclosure", 3,
                         ("url", SecurityElement.Escape(item.Enclosure.url)),
                         ("length", item.Enclosure.length.ToString()),
                         ("type", item.Enclosure.type));
                     AddTag(sb, "guid", SecurityElement.Escape(item.Guid), 3, ("isPermalink", "false"));
+                    AddTag(sb, "itunes:summary",$"<![CDATA[{SecurityElement.Escape(item.Summary)}]]>", 3);
+                    AddTag(sb, "description",$"<![CDATA[{SecurityElement.Escape(item.Description)}]]>", 3);
+
+                    var image = item.Image ?? feed.Image?.Url ?? string.Empty;
+                    if (string.IsNullOrEmpty(image)) continue;
+                    AddTagAutoClose(sb, "itunes:image", 3, ("href", SecurityElement.Escape(image)));
                 }
             }
+        }
+    }
+
+    private static string EnrichTitle(Item item)
+    {
+        var lower = item.Title.ToLowerInvariant();
+        return CheckIfTitleContainsPodcastNameOrTheirAlias()
+            ? item.Title
+            : $"[{item.ShortTitle ?? item.Podcast}] {item.Title}";
+
+        bool CheckIfTitleContainsPodcastNameOrTheirAlias()
+        {
+            return lower.Contains(item.Podcast.ToLowerInvariant()) ||
+                   !string.IsNullOrEmpty(item.ShortTitle) && lower.Contains(item.ShortTitle.ToLowerInvariant()) ||
+                   item.Alias?.Any(x => lower.Contains(x.ToLowerInvariant())) == true;
         }
     }
 
@@ -125,7 +148,7 @@ public class FeedAdapter : IFeedAdapter
         public Rss(StringBuilder sb)
         {
             this.sb = sb;
-            sb.AppendLine("<rss>");
+            sb.AppendLine("<rss xmlns:itunes=\"http://www.itunes.com/dtds/podcast-1.0.dtd\">");
         }
 
         public void Dispose()
